@@ -20,5 +20,13 @@
       </camera>
     </gui>
 
+    <physics type="ode">
+      <ode>
+	<solver>
+	  <iters>150</iters>
+	</solver>
+      </ode>
+    </physics>
+
   </world>
 </sdf>

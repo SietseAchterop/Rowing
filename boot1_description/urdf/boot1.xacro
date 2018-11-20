@@ -47,7 +47,7 @@
     <child link="starboard_blade"/>
     <origin rpy="0 0  0.0" xyz="0.0 0.0   -1.8"/>
     <axis xyz="0 1 0"/>
-    <limit effort="100.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="200.0" lower="-0.2" upper="0.2" velocity="1.0"/>
   </joint>
 
   <joint name="port_blade_joint" type="revolute">
@@ -55,14 +55,13 @@
     <child link="port_blade"/>
     <origin rpy="0.0  0 0.0" xyz="0.0 0.0   1.8"/>
     <axis xyz="0 1 0"/>
-    <limit effort="100.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="200.0" lower="-0.2" upper="0.2" velocity="1.0"/>
   </joint>
 
-  <!--   <link name="base_link"/> -->
-  <link name="world"/>
+  <link name="base_link"/>
   <!-- Dummy for gazebo   -->
   <joint name="dummy" type="fixed">
-    <parent link="world"/>
+    <parent link="base_link"/>
     <child link="skiff"/>
   </joint>
 
@@ -137,7 +136,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0   0   -0.45"/>
       <geometry>
-        <cylinder length="2.7" radius="0.02"/>
+        <cylinder length="2.0" radius="0.02"/>
       </geometry>
     </collision>
     <visual>
@@ -156,7 +155,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0   0   0.45"/>
       <geometry>
-        <cylinder length="2.7" radius="0.02"/>  <!-- 2.0 to prevent collissions  -->
+        <cylinder length="2.0" radius="0.02"/>  <!-- 2.0 to prevent collissions  -->
       </geometry>
     </collision>
     <visual>
