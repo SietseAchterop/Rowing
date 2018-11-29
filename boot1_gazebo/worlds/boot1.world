@@ -21,6 +21,7 @@
     </gui>
 
     <physics type="ode">
+      <max_step_size>0.001</max_step_size>
       <ode>
 	<solver>
 	  <iters>150</iters>
