@@ -10,12 +10,12 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 # globals
 # All joints to control
-arm_joints = ['starboard_rowlock_joint',
-              'port_rowlock_joint',
-              'starboard_rowlock_oar_joint',
-              'port_rowlock_oar_joint',
-              'starboard_blade_joint',
-              'port_blade_joint' ]
+arm_joints = ['starboard_rowlock',
+              'port_rowlock',
+              'starboard_oar',
+              'port_oar',
+              'starboard_blade',
+              'port_blade' ]
 
 # Connect to the trajectory action server
 rospy.loginfo('Waiting for boot1 trajectory controller...')
@@ -36,18 +36,18 @@ def main():
         # Set a goal configurations for the arm
 
         arm_goals  = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
-                      [0.8, -0.8, -0.22, 0.21 , 0.02, -0.01],
-                      [-0.55, 0.55, -0.22, 0.21 , 0.02, -0.01],
+                      [0.8, -0.8, -0.19, 0.17 , 0.02, -0.01],
+                      [-0.55, 0.55, -0.19, 0.17 , 0.02, -0.01],
                       [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01],
 
                       [0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
-                      [0.8, -0.8, -0.22, 0.21 , 0.02, -0.01],
-                      [-0.55, 0.55, -0.22, 0.21 , 0.02, -0.01],
+                      [0.8, -0.8, -0.25, 0.24 , 0.02, -0.01],
+                      [-0.55, 0.55, -0.25, 0.24 , 0.02, -0.01],
                       [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01],
 
                       [0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
-                      [0.8, -0.8, -0.22, 0.21 , 0.02, -0.01],
-                      [-0.55, 0.55, -0.22, 0.21 , 0.02, -0.01],
+                      [0.8, -0.8, -0.19, 0.17 , 0.02, -0.01],
+                      [-0.55, 0.55, -0.19, 0.17 , 0.02, -0.01],
                       [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01],
         ]
         
