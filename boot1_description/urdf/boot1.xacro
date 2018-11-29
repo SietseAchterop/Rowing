@@ -11,14 +11,14 @@
   <xacro:include filename="$(find boot1_description)/urdf/materials.xacro" />
 
     
-  <joint name="starboard_rowlock_joint" type="revolute">
+  <joint name="starboard_rowlock" type="revolute">
     <parent link="skiff"/>
     <child link="starboard_rowlock"/>
     <origin rpy="0.0  0.0 0.0" xyz="0.0 0.8 0.42"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="-1.4" upper="1.4" velocity="1.0"/>
   </joint>
-  <joint name="port_rowlock_joint" type="revolute">
+  <joint name="port_rowlock" type="revolute">
     <parent link="skiff"/>
     <child link="port_rowlock"/>
     <origin rpy="0.0  0.0 0.0" xyz="0.0 -0.8 0.4"/>
@@ -26,7 +26,7 @@
     <limit effort="1000.0" lower="-1.4" upper="1.4" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_rowlock_oar_joint" type="revolute">
+  <joint name="starboard_oar" type="revolute">
     <parent link="starboard_rowlock"/>
     <child link="starboard_oar"/>
     <origin rpy="0.0  ${pi/2} -${pi/2}" xyz="0.0 0.0   0.02"/>
@@ -34,7 +34,7 @@
     <limit effort="1000.0" lower="-0.4" upper="0.0" velocity="1.0"/>
   </joint>
 
-  <joint name="port_rowlock_oar_joint" type="revolute">
+  <joint name="port_oar" type="revolute">
     <parent link="port_rowlock"/>
     <child link="port_oar"/>
     <origin rpy="0.0  ${pi/2} -${pi/2}" xyz="0.0 0.0   0.02"/>
@@ -42,7 +42,7 @@
     <limit effort="1000.0" lower="0.0" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_blade_joint" type="revolute">
+  <joint name="starboard_blade" type="revolute">
     <parent link="starboard_oar"/>
     <child link="starboard_blade"/>
     <origin rpy="0 0  0.0" xyz="0.0 0.0   -1.8"/>
@@ -50,7 +50,7 @@
     <limit effort="1000.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="port_blade_joint" type="revolute">
+  <joint name="port_blade" type="revolute">
     <parent link="port_oar"/>
     <child link="port_blade"/>
     <origin rpy="0.0  0 0.0" xyz="0.0 0.0   1.8"/>
@@ -206,7 +206,7 @@
 
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="starboard_rowlock_joint">
+    <joint name="starboard_rowlock">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor1">
@@ -216,7 +216,7 @@
 
   <transmission name="tran2">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="port_rowlock_joint">
+    <joint name="port_rowlock">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor2">
@@ -226,7 +226,7 @@
 
   <transmission name="tran3">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="starboard_rowlock_oar_joint">
+    <joint name="starboard_oar">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor3">
@@ -236,7 +236,7 @@
 
   <transmission name="tran4">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="port_rowlock_oar_joint">
+    <joint name="port_oar">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor4">
@@ -246,7 +246,7 @@
 
   <transmission name="tran5">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="starboard_blade_joint">
+    <joint name="starboard_blade">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor5">
@@ -256,7 +256,7 @@
 
   <transmission name="tran6">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="port_blade_joint">
+    <joint name="port_blade">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor6">
