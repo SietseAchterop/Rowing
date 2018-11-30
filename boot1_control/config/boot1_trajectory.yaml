@@ -15,7 +15,7 @@ boot1:
       - starboard_blade
       - port_blade
     constraints:
-      goal_time: 0.0
+      goal_time: 0.5
       stopped_velocity_tolerance: 0.01
       starboard_rowlock      : {trajectory: 0.01, goal: 0.01}
       port_rowlock           : {trajectory: 0.01, goal: 0.01}
@@ -30,7 +30,6 @@ boot1:
       port_oar               :  {p: 1000.0, d: 25.0, i: 0.0, i_clamp: 0.0}
       starboard_blade        :  {p: 100.0, d: 5.0, i: 0.0, i_clamp: 0.0}
       port_blade             :  {p: 100.0, d: 5.0, i: 0.0, i_clamp: 0.0}
-      state_publish_rate:  100       # was 50. stabieler?
-      action_monitor_rate: 100
+      state_publish_rate:  50       # was 50. stabieler?
       stop_trajectory_duration: 0.0
 

@@ -25,6 +25,7 @@
       <ode>
 	<solver>
 	  <iters>150</iters>
+	  <sor>1.0</sor>
 	</solver>
       </ode>
     </physics>

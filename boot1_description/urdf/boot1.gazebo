@@ -13,7 +13,7 @@
     </plugin>
   </gazebo>
 
-  <gazebo>
+  <gazebo>    
     <plugin name="sb_rl_sensor" filename="libgazebo_ros_ft_sensor.so">
         <updateRate>10.0</updateRate>
         <topicName>sb_rl_sensor</topicName>
@@ -36,6 +36,11 @@
         <updateRate>10.0</updateRate>
         <topicName>p_oar_sensor</topicName>
         <jointName>port_oar</jointName>
+	<noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.003</stddev> <!-- change this to simulate noise --> 
+	</noise>
     </plugin>
 
     <plugin name="sbb_sensor" filename="libgazebo_ros_ft_sensor.so">
@@ -61,36 +66,42 @@
     <mu1>0.01</mu1>
     <mu2>0.01</mu2>
     <material>Gazebo/Green</material>
+    <provideFeedback>true</provideFeedback>
   </gazebo>
 
   <gazebo reference="port_rowlock">
     <mu1>0.01</mu1>
     <mu2>0.01</mu2>
     <material>Gazebo/Red</material>
+    <provideFeedback>true</provideFeedback>
   </gazebo>
 
   <gazebo reference="starboard_oar">
     <mu1>0.01</mu1>
     <mu2>0.01</mu2>
     <material>Gazebo/Green</material>
+    <provideFeedback>true</provideFeedback>
   </gazebo>
 
   <gazebo reference="port_oar">
     <mu1>0.01</mu1>
     <mu2>0.01</mu2>
     <material>Gazebo/Green</material>
+    <provideFeedback>true</provideFeedback>
   </gazebo>
 
   <gazebo reference="starboard_blade">
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
     <material>Gazebo/Green</material>
+    <provideFeedback>true</provideFeedback>
   </gazebo>
 
   <gazebo reference="port_blade">
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
     <material>Gazebo/Red</material>
+    <provideFeedback>true</provideFeedback>
   </gazebo>
 
 
