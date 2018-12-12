@@ -13,25 +13,25 @@
   </plugin>
 
   <plugin name="sb_rl_sensor" filename="libgazebo_ros_ft_sensor.so">
-    <updateRate>10.0</updateRate>
+    <updateRate>50.0</updateRate>
     <topicName>sb_rl_sensor</topicName>
     <jointName>starboard_rowlock</jointName>
   </plugin>
 
   <plugin name="p_rl_sensor" filename="libgazebo_ros_ft_sensor.so">
-    <updateRate>10.0</updateRate>
+    <updateRate>50.0</updateRate>
     <topicName>p_rl_sensor</topicName>
     <jointName>port_rowlock</jointName>
   </plugin>
 
   <plugin name="sb_oar_sensor" filename="libgazebo_ros_ft_sensor.so">
-    <updateRate>10.0</updateRate>
+    <updateRate>50.0</updateRate>
     <topicName>sb_oar_sensor</topicName>
     <jointName>starboard_oar</jointName>
   </plugin>
 
   <plugin name="p_oar_sensor" filename="libgazebo_ros_ft_sensor.so">
-    <updateRate>10.0</updateRate>
+    <updateRate>50.0</updateRate>
     <topicName>p_oar_sensor</topicName>
     <jointName>port_oar</jointName>
     <noise>
@@ -42,13 +42,13 @@
   </plugin>
 
   <plugin name="sbb_sensor" filename="libgazebo_ros_ft_sensor.so">
-    <updateRate>10.0</updateRate>
+    <updateRate>50.0</updateRate>
     <topicName>sbb_sensor</topicName>
     <jointName>starboard_blade</jointName>
   </plugin>
 
   <plugin name="pb_sensor" filename="libgazebo_ros_ft_sensor.so">
-    <updateRate>10.0</updateRate>
+    <updateRate>50.0</updateRate>
     <topicName>pb_sensor</topicName>
     <jointName>port_blade</jointName>
   </plugin>
