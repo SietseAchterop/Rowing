@@ -36,46 +36,47 @@
 
   <joint name="starboard_rowlock" type="revolute">
     <parent link="skiff"/>
-    <child link="starboard_rowlock"/>
+    <child link="starboard_rowlock_l"/>
     <origin rpy="0.0  0.0 0.0" xyz="-3 0.8 0.42"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="-1.4" upper="1.4" velocity="1.0"/>
   </joint>
+
   <joint name="port_rowlock" type="revolute">
     <parent link="skiff"/>
-    <child link="port_rowlock"/>
+    <child link="port_rowlock_l"/>
     <origin rpy="0.0  0.0 0.0" xyz="-3 -0.8 0.4"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="-1.4" upper="1.4" velocity="1.0"/>
   </joint>
 
   <joint name="starboard_oar" type="revolute">
-    <parent link="starboard_rowlock"/>
-    <child link="starboard_oar"/>
+    <parent link="starboard_rowlock_l"/>
+    <child link="starboard_oar_l"/>
     <origin rpy="0.0  ${pi/2} -${pi/2}" xyz="0.0 0.0   0.02"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-0.4" upper="0.0" velocity="1.0"/>
   </joint>
 
   <joint name="port_oar" type="revolute">
-    <parent link="port_rowlock"/>
-    <child link="port_oar"/>
+    <parent link="port_rowlock_l"/>
+    <child link="port_oar_l"/>
     <origin rpy="0.0  ${pi/2} -${pi/2}" xyz="0.0 0.0   0.02"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="0.0" upper="0.4" velocity="1.0"/>
   </joint>
 
   <joint name="starboard_blade" type="revolute">
-    <parent link="starboard_oar"/>
-    <child link="starboard_blade"/>
+    <parent link="starboard_oar_l"/>
+    <child link="starboard_blade_l"/>
     <origin rpy="0 0  0.0" xyz="0.0 0.0   -1.8"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
   <joint name="port_blade" type="revolute">
-    <parent link="port_oar"/>
-    <child link="port_blade"/>
+    <parent link="port_oar_l"/>
+    <child link="port_blade_l"/>
     <origin rpy="0.0  0 0.0" xyz="0.0 0.0   1.8"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-0.4" upper="0.4" velocity="1.0"/>
@@ -133,7 +134,7 @@
     </visual>
   </link>
 
-  <link name="starboard_rowlock">    
+  <link name="starboard_rowlock_l">    
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -153,7 +154,7 @@
     </visual>
   </link>
 
-  <link name="port_rowlock">    
+  <link name="port_rowlock_l">    
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -173,7 +174,7 @@
     </visual>
   </link>
 
-  <link name="starboard_oar">
+  <link name="starboard_oar_l">
     <inertial>
       <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0 -0.45"/>
@@ -192,7 +193,8 @@
       </geometry>
     </visual>
   </link>
-  <link name="port_oar">
+
+  <link name="port_oar_l">
     <inertial>
       <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0 0.45"/>
@@ -211,7 +213,8 @@
       </geometry>
     </visual>
   </link>
-  <link name="starboard_blade">
+
+  <link name="starboard_blade_l">
     <inertial>
       <mass value="1.0"/>
       <origin rpy="0 -1.4 0" xyz="0.02 0 -0.02"/>
@@ -230,7 +233,8 @@
       </geometry>
     </visual>
   </link>
-  <link name="port_blade">
+
+  <link name="port_blade_l">
     <inertial>
       <mass value="1.0"/>
       <origin rpy="0 1.4 0" xyz="0.02 0 -0.02"/>
