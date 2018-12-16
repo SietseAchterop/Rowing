@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot 	xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--
+    Generated from param.yaml and code.
+
+    Describes parameter of the boot model
+    boat: span
+    oar: inner, outer
+    rower: weight, lengths of links, musle power?
+
+     
+-->
+
+</robot>
