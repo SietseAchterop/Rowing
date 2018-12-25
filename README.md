@@ -11,3 +11,15 @@ Gazabo is used as the simulator and the control is done via ROS.
 
 ### boot1, the basic skull boat.
 
+
+
+
+### boot2
+
+With basic infrastructure for controlling the experiment
+
+
+### boot3
+
+Rower added
+
