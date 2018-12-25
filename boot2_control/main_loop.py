@@ -24,6 +24,13 @@ from gazebo_msgs.msg import ModelStates
 from geometry_msgs.msg import WrenchStamped
 from controller_manager import controller_manager_interface
 
+help_string = """   Commands:
+     empty,
+     g, h,
+     p, q, list, (un)load, stop, model
+"""
+
+
 # globals
 # All joints to control
 arm_joints = ['starboard_rowlock',
@@ -139,24 +146,24 @@ def ssbcb(data):
 
 
 
-# default values
-cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
-               [0.8, -0.8, -0.28, 0.27 , 0.02, -0.01],
-               [-0.55, 0.55, -0.28, 0.27 , 0.02, -0.01],
-               [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
-cycle_times = [ 0.2, 1.0, 0.2, 2.0 ]
-
-
 def create_movegoals():
     global repeat
-    # Set initial goal configurations for the boat
+    # Initially go to proper position
     move_goals  = [[0.0, -0.0, -0.0, 0.0, 0.0, -0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
+    """
     cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
                    [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
     cycle_times = [ 1.0, 2.0 ]
+    """
+    # default values
+    cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
+                   [0.8, -0.8, -0.28, 0.27 , 0.02, -0.01],
+                   [-0.55, 0.55, -0.28, 0.27 , 0.02, -0.01],
+                   [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
+    cycle_times = [ 0.2, 1.0, 0.2, 2.0 ]
 
     # calculate complete session:
     for i in range(repeat):
@@ -167,28 +174,24 @@ def create_movegoals():
     return (move_goals, time_goals)    
 
 def do_move(move_goals, time_goals):
-    global tfstart
     #print ('Do move')
 
     # Create a single-point arm trajectory with the arm_goal as the end-point
     arm_trajectory = JointTrajectory()
     arm_trajectory.joint_names = arm_joints
 
-    tfstart = 0
+    time_goal = 0
     for j in range(len(move_goals)):
         arm_goal = move_goals[j]
-        tfstart = tfstart+time_goals[j]
-        #print (' move_goals[%d] %s' % (tfstart, arm_goal))
+        time_goal += time_goals[j]
+        print (' arm_goal, time_goal', arm_goal, time_goal)
         
         arm_trajectory.points.append(JointTrajectoryPoint())
         arm_trajectory.points[j].positions = arm_goal
         arm_trajectory.points[j].velocities = [0.0 for i in arm_joints]
         arm_trajectory.points[j].accelerations = [0.0 for i in arm_joints]
-        arm_trajectory.points[j].time_from_start = rospy.Duration(tfstart)
+        arm_trajectory.points[j].time_from_start = rospy.Duration(time_goal)
     
-    # Send the trajectory to the arm action server
-    #rospy.loginfo('Start moving the boat, will take %0.1f seconds.' % tfstart)
-        
     # Create an empty trajectory goal
     arm_goal = FollowJointTrajectoryGoal()
         
@@ -200,26 +203,30 @@ def do_move(move_goals, time_goals):
     
     # Send the goal to the action server
     arm_client.send_goal(arm_goal)
+    print('send goal')
     arm_client.wait_for_result()   # why does this return immediately?
+    print('wait done')
 
 def start_experiment():
-    global coll_running, tfstart, mdata, bdata, spdata, ssbdata
+    global coll_running, tfstart, mdata, bdata, spdata, ssbdata, mcnt, bcnt, spcnt, ssbcnt
     print('start experiment')
 
     move_goals, time_goals = create_movegoals()
 
     # resize data
     tfstart = int(math.ceil(sum(time_goals)))
-    print ('tfstart: ', tfstart)
+    # Send the trajectory to the arm action server
+    rospy.loginfo('Start moving the boat, will take %0.1f seconds.' % tfstart)
     # currently 1 millisecond steps
-    mdata   = np.resize(bdata, (tfstart*4000 + 2000, 3))
+    mdata   = np.resize(bdata, (tfstart*4000 + 12000, 3))
     # currently 1/50-th second steps
-    bdata   = np.resize(bdata, (tfstart*50 + 200, 5))
-    spdata  = np.resize(bdata, (tfstart*50 + 200, 7))
-    ssbdata = np.resize(bdata, (tfstart*50 + 200, 7))
+    bdata   = np.resize(bdata, (tfstart*50 + 2000, 5))
+    spdata  = np.resize(bdata, (tfstart*50 + 2000, 7))
+    ssbdata = np.resize(bdata, (tfstart*50 + 2000, 7))
 
+    print ('start', mcnt,bcnt,spcnt, ssbcnt)
     coll_running = True
-    
+
     do_move(move_goals, time_goals)
     # sleep until movement completely done to collect the data
     print('start sleep')
@@ -285,6 +292,7 @@ def load_start_controllers():
     os.system("rosservice call /boot2/controller_manager/load_controller /boot2/joint_state_controller")
     os.system("rosservice call /boot2/controller_manager/load_controller /boot2/joint_trajectory_controller")
     os.system("rosservice call /boot2/controller_manager/switch_controller \"{start_controllers: ['/boot2/joint_state_controller', '/boot2/joint_trajectory_controller'], stop_controllers: [], strictness: 2}\" ")
+    # wachten tot de topics weer lopen lijkt nodig.... of buffer groter maken
 
 def stop_controllers():
     os.system("rosservice call /boot2/controller_manager/switch_controller \"{stop_controllers: ['/boot2/joint_state_controller', '/boot2/joint_trajectory_controller'], start_controllers: [], strictness: 2}\"")
@@ -293,9 +301,18 @@ def unload_controllers():
     os.system("rosservice call /boot2/controller_manager/unload_controller /boot2/joint_state_controller")
     os.system("rosservice call /boot2/controller_manager/unload_controller /boot2/joint_trajectory_controller")
 
-def reload_model():
-    os.system("gz model -m boot2 -d; roslaunch boot2_control param.launch; sleep 1; rosrun gazebo_ros spawn_model -model boot2 -urdf -param robot_description")
 
+def reload_model():
+    os.system('roslaunch boot2_control param.launch')
+    os.system('rosparam load ~/catkin_ws/src/Rowing/boot2_control/config/boot2_trajectory.yaml')
+    os.system("gz model -m boot2 -d; sleep 1; rosrun gazebo_ros spawn_model -model boot2 -urdf -param robot_description")
+
+def world_pause(state):
+    print("pause: ", state)
+    if state:
+        os.system("gz world -p 1")
+    else:
+        os.system("gz world -p 0")
 
 """ main program """
 
@@ -303,16 +320,19 @@ if __name__ == '__main__':
     rospy.init_node('main_loop')
     args = rospy.myargv()
 
+    plt.style.use('ggplot') # nicer plots?
+    
     # Set to True to move back to the starting configurations
     reset  = rospy.get_param('~reset', False)
-    repeat = rospy.get_param('~repeat', 3)
+    repeat = rospy.get_param('~repeat', 1)
 
-
-
-    # test gazebo running, controller running?
+    # make sure  gazebo is running with model included
+    world_pause(False)
+    #    we could start gazebo from here...
+    load_start_controllers()
 
     # Connect to the trajectory action server
-    rospy.loginfo('Waiting for boot2 trajectory controller...')
+    #rospy.loginfo('Waiting for boot2 trajectory controller...')
     arm_client = actionlib.SimpleActionClient('boot2/joint_trajectory_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
 
 
@@ -326,8 +346,8 @@ if __name__ == '__main__':
     arm_client.wait_for_server()
     #rospy.loginfo('...connected.')
 
-    # command loop, assume gazebo is running with model included
-    print('Commands: empty, g, p, q, list, (un)load, stop, model')
+    # command loop
+    print (help_string)
     while not rospy.is_shutdown():
         next = raw_input('-> ')
         if next == '' or next.split()[0] == 'g':
@@ -335,8 +355,15 @@ if __name__ == '__main__':
             start_experiment()
         elif next.split()[0] == 'p':
             changeparam()
+        elif next.split()[0] == 'r':
+            stop_controllers()
+            unload_controllers()
+            reload_model()
+            load_start_controllers()
         elif next.split()[0] == 'q':
             break
+        elif next.split()[0] == 'h':
+            print (help_string)
         elif next.split()[0] == 'list':
             list_controllers()
         elif next.split()[0] == 'load':
