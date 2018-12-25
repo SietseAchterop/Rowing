@@ -80,8 +80,18 @@
 
 <gazebo reference="skiff">
   <material>Gazebo/White</material>
-  <mu1>0.02</mu1>
-  <mu2>0.02</mu2>
+  <mu1>0.01</mu1>
+  <mu2>0.01</mu2>
+  <collision>
+    <surface>
+      <friction>
+        <ode>
+          <slip1>0.05</slip1>
+          <slip2>0.12</slip2>
+        </ode>
+      </friction>
+    </surface>
+  </collision>
 </gazebo>
 
 <gazebo reference="starboard_rowlock_l">
