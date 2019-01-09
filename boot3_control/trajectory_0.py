@@ -38,7 +38,8 @@ arm_joints = ['starboard_rowlock',
               'starboard_oar',
               'port_oar',
               'starboard_blade',
-              'port_blade' ]
+              'port_blade',
+              'knee' ]
 tfstart = 0
 
 """
@@ -150,6 +151,35 @@ def ssbcb(data):
         ssbcnt +=1
 
 
+def list_controllers():
+    os.system("rosservice call /boot/controller_manager/list_controllers")
+
+def load_start_controllers():
+    os.system("rosservice call /boot/controller_manager/load_controller /boot/joint_state_controller")
+    os.system("rosservice call /boot/controller_manager/load_controller /boot/joint_trajectory_controller")
+    os.system("rosservice call /boot/controller_manager/switch_controller \"{start_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], stop_controllers: [], strictness: 2}\" ")
+    # wachten tot de topics weer lopen lijkt nodig.... of buffer groter maken
+
+def stop_controllers():
+    os.system("rosservice call /boot/controller_manager/switch_controller \"{stop_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], start_controllers: [], strictness: 2}\"")
+
+def unload_controllers():
+    os.system("rosservice call /boot/controller_manager/unload_controller /boot/joint_state_controller")
+    os.system("rosservice call /boot/controller_manager/unload_controller /boot/joint_trajectory_controller")
+
+
+def reload_model():
+    os.system('roslaunch boot3_control param.launch')
+    os.system('rosparam load ~/catkin_ws/src/Rowing/boot3_control/config/boot_trajectory.yaml')
+    os.system("gz model -m boot -d; sleep 1; rosrun gazebo_ros spawn_model -model boot -urdf -param robot_description")
+
+def world_pause(state):
+    print("pause: ", state)
+    if state:
+        os.system("gz world -p 1")
+    else:
+        os.system("gz world -p 0")
+
 
 # main function
 def main():
@@ -164,8 +194,10 @@ def main():
     reset  = rospy.get_param('~reset', False)
     repeat = rospy.get_param('~repeat', 3)
 
+    load_start_controllers()
+
     # Set initial goal configurations for the boat
-    move_goals  = [[0.0, -0.0, -0.0, 0.0, 0.0, -0.0]]
+    move_goals  = [[0.0, -0.0, -0.0, 0.0, 0.0, -0.0, 0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
@@ -177,8 +209,8 @@ def main():
                    [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
     cycle_times = [ 0.2, 1.0, 0.2, 2.0 ]
     """
-    cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
-                   [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
+    cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01, 0.0],
+                   [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01, -2.2]]
     cycle_times = [ 1.0, 2.0 ]
 
     # calculate complete session:

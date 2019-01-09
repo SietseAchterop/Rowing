@@ -26,6 +26,6 @@
     args="-urdf -model boot -param robot_description"/>
 
   <!-- ros_control boot launch file -->
-  <include file="$(find boot3_control)/launch/boot_trajectory.launch" />
+   <include file="$(find boot3_control)/launch/boot_trajectory.launch" /> 
 
 </launch>

@@ -135,5 +135,23 @@
   <provideFeedback>true</provideFeedback>
 </gazebo>
 
+<gazebo reference="voetenboord">
+  <material>Gazebo/Gray</material>
+</gazebo>
+
+<gazebo>
+  <joint name="lower12" type="fixed">
+    <pose>0.0 0.0 0 0 0 0.1</pose>
+    <parent>upperleg_1</parent>
+    <child>upperleg_2</child>
+  </joint>
+
+  <joint name="lowerarm_left" type="fixed">
+    <pose>0.0 0.0 0 0 0 0.1</pose>
+    <parent>dummy_link_1</parent>
+    <child>dummy_link_2</child>
+  </joint>
+
+</gazebo>
 
 </robot>

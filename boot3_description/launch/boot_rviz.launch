@@ -1,7 +1,7 @@
 <launch>
 
   <param name="robot_description"
-    command="$(find xacro)/xacro.py '$(find boot3_description)/urdf/boot.xacro' " />
+    command="xacro '$(find boot3_description)/urdf/boot.xacro' " />
 
 
 
