@@ -33,13 +33,15 @@ from geometry_msgs.msg import WrenchStamped
 
 # globals
 # All joints to control
-arm_joints = ['starboard_rowlock',
-              'port_rowlock',
-              'starboard_oar',
-              'port_oar',
-              'starboard_blade',
+arm_joints = ['starboard_blade',
               'port_blade',
-              'knee' ]
+              'knee',
+              'hip1',
+              'hip2',
+              'back_lh',
+              'shoulder_l',
+              'shoulder_iets',
+              'LShoulderTheta' ]
 tfstart = 0
 
 """
@@ -100,13 +102,13 @@ def jscallback(data):
             # gebeurd vrijwel nooit
             print ('timestamp error', timestamp, timestamp-bstarttime)
         # port starboard rowlock
-        p_port_rowlock = jsts.position[2]
-        p_starboard_rowlock = jsts.position[5]
+        p_knee = jsts.position[4]
+        hip2 = jsts.position[5]
         e_port_rowlock = jsts.effort[2]
         e_starboard_rowlock = jsts.effort[5]
-        #print ('position  %d   %1.2f %1.2f' % (timestamp, p_port_rowlock, p_starboard_rowlock))
+        #print ('position  %d   %1.2f %1.2f' % (timestamp, p_knee, hip2))
         # data to nparray
-        bdata[bcnt] = [timestamp-bstarttime, p_port_rowlock, p_starboard_rowlock, e_port_rowlock, e_starboard_rowlock]
+        bdata[bcnt] = [timestamp-bstarttime, p_knee, hip2, e_port_rowlock, e_starboard_rowlock]
         bcnt +=1
 
 def modelcb(data):
@@ -197,7 +199,7 @@ def main():
     load_start_controllers()
 
     # Set initial goal configurations for the boat
-    move_goals  = [[0.0, -0.0, -0.0, 0.0, 0.0, -0.0, 0.0]]
+    move_goals  = [[0.0, -0.0, -0.0, 0.0, 0.0, -0.0, 0.0, 0.0, 0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
@@ -209,8 +211,8 @@ def main():
                    [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
     cycle_times = [ 0.2, 1.0, 0.2, 2.0 ]
     """
-    cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01, 0.0],
-                   [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01, -2.2]]
+    cycle_goals = [[0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                   [0.0, 0.0, -2.00, -1.0 , 1.0, 0.0, 0.0, 0.0, 1.0]]
     cycle_times = [ 1.0, 2.0 ]
 
     # calculate complete session:
@@ -259,7 +261,7 @@ def main():
     #print ('boat data:', tmp)
     plt.subplot(5,1,1)
     #plt.xlabel('Time')
-    plt.ylabel('Position')
+    plt.ylabel('Knee, hip')
     plt.plot(tmp)
 
     tmp=bdata[:bcnt, 3:5]
