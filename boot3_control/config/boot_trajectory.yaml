@@ -12,7 +12,6 @@ boot:
       - starboard_blade
       - port_blade
       - knee
-      - hip1
       - hip2
       - back_lh
       - shoulder_l
@@ -25,17 +24,15 @@ boot:
       starboard_blade        : {trajectory: 0.01, goal: 0.01}
       port_blade             : {trajectory: 0.01, goal: 0.01}
       knee                   : {trajectory: 0.01, goal: 0.01}
-      hip1                   : {trajectory: 0.01, goal: 0.01}
       hip2                   : {trajectory: 0.01, goal: 0.01}
       back_lh                : {trajectory: 0.01, goal: 0.01}
       shoulder_l             : {trajectory: 0.01, goal: 0.01}
       shoulder_iets          : {trajectory: 0.01, goal: 0.01}
-      LShooulderTheta        : {trajectory: 0.01, goal: 0.01}
+      LShoulderTheta         : {trajectory: 0.01, goal: 0.01}
     gains:
       starboard_blade        :  {p: 100.0, d: 5.0, i: 0.0, i_clamp: 0.0}
       port_blade             :  {p: 100.0, d: 5.0, i: 0.0, i_clamp: 0.0}
       knee                   :  {p: 10000.0, d: 5.0, i: 0.0, i_clamp: 0.0}
-      hip1                   :  {p: 10000.0, d: 5.0, i: 0.0, i_clamp: 0.0}
       hip2                   :  {p: 10000.0, d: 5.0, i: 0.0, i_clamp: 0.0}
       back_lh                :  {p: 10000.0, d: 5.0, i: 0.0, i_clamp: 0.0}
       shoulder_l             :  {p: 10000.0, d: 5.0, i: 0.0, i_clamp: 0.0}

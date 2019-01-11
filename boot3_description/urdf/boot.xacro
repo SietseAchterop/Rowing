@@ -13,7 +13,7 @@
   <!-- parameters that can be configured -->
   <xacro:include filename="$(find boot3_description)/config/param.xacro" />
 
-  <joint name="prism" type="prismatic">
+  <joint name="prism" type="fixed">  <!-- prismatic -->
     <parent link="world"/>
     <child link="l1"/>
     <origin xyz="0 0 0.25" rpy="0 0 0"/>
@@ -115,7 +115,7 @@
     <child link="upperleg_1"/>
     <origin rpy="0.0  0 0.0" xyz="-0.5 0.0   0.0"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-2.5" upper="0" velocity="1.0"/>
+    <limit effort="10000.0" lower="-3.1" upper="0" velocity="1.0"/>
   </joint>
 
   <joint name="hip1" type="revolute">
@@ -123,7 +123,7 @@
     <child link="upperleg_2"/>
     <origin rpy="0  0.0998 0.0" xyz="0.0 0.0   0.1"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-2.5" upper="0" velocity="1.0"/>
+    <limit effort="1000.0" lower="-1.6" upper="0" velocity="1.0"/>
   </joint>
 
   <joint name="hip2" type="revolute">
@@ -131,7 +131,7 @@
     <child link="back_low"/>
     <origin rpy="0  -${pi/2+0.34} 0.0" xyz="0.0 0.0   0.1"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+    <limit effort="10000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
 
   <joint name="back_lh" type="revolute">

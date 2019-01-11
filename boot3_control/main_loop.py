@@ -25,7 +25,7 @@ from geometry_msgs.msg import WrenchStamped
 from controller_manager import controller_manager_interface
 
 help_string = """   Commands:
-     empty,
+     <empty>,
      g, h,
      p, q, list, (un)load, stop, model
 """
@@ -33,12 +33,14 @@ help_string = """   Commands:
 
 # globals
 # All joints to control
-arm_joints = ['starboard_rowlock',
-              'port_rowlock',
-              'starboard_oar',
-              'port_oar',
-              'starboard_blade',
-              'port_blade' ]
+arm_joints = ['starboard_blade',
+              'port_blade',
+              'knee',
+              'hip2',
+              'back_lh',
+              'shoulder_l',
+              'shoulder_iets',
+              'LShoulderTheta' ]
 tfstart = 0
 
 """
@@ -95,13 +97,13 @@ def jscallback(data):
             # gebeurd vrijwel nooit
             print ('timestamp error', timestamp, timestamp-bstarttime)
         # port starboard rowlock
-        p_port_rowlock = jsts.position[2]
-        p_starboard_rowlock = jsts.position[5]
+        p_knee = jsts.position[2]
+        hip2 = jsts.position[5]
         e_port_rowlock = jsts.effort[2]
         e_starboard_rowlock = jsts.effort[5]
-        #print ('position  %d   %1.2f %1.2f' % (timestamp, p_port_rowlock, p_starboard_rowlock))
+        #print ('position  %d   %1.2f %1.2f' % (timestamp, p_knee, hip2))
         # data to nparray
-        bdata[bcnt] = [timestamp-bstarttime, p_port_rowlock, p_starboard_rowlock, e_port_rowlock, e_starboard_rowlock]
+        bdata[bcnt] = [timestamp-bstarttime, p_knee, hip2, e_port_rowlock, e_starboard_rowlock]
         bcnt +=1
 
 def modelcb(data):
@@ -148,8 +150,8 @@ def ssbcb(data):
 
 def create_movegoals():
     global repeat
-    # Initially go to proper position
-    move_goals  = [[0.0, -0.0, -0.0, 0.0, 0.0, -0.0]]
+    # Initially go to proper position (use arm_joints order)
+    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ,0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
@@ -159,11 +161,9 @@ def create_movegoals():
     cycle_times = [ 1.0, 2.0 ]
     """
     # default values
-    cycle_goals = [[0.8, -0.8, -0.10, 0.10, 0.02, -0.01],
-                   [0.8, -0.8, -0.28, 0.27 , 0.02, -0.01],
-                   [-0.55, 0.55, -0.28, 0.27 , 0.02, -0.01],
-                   [-0.55, 0.55, -0.10, 0.10 , 0.02, -0.01]]
-    cycle_times = [ 0.2, 1.0, 0.2, 2.0 ]
+    cycle_goals = [[0.0, 0.0,   0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                   [0.0, 0.0,  -3.0, 0.8, 0.0, 0.0, 0.0, 0.0]]
+    cycle_times = [ 1.0, 2.0 ]
 
     # calculate complete session:
     for i in range(repeat):
@@ -247,7 +247,7 @@ def start_experiment():
     #print ('boat data:', tmp)
     plt.subplot(5,1,1)
     #plt.xlabel('Time')
-    plt.ylabel('Position')
+    plt.ylabel('Knee, hip2')
     plt.plot(tmp)
 
     tmp=bdata[:bcnt, 3:5]
