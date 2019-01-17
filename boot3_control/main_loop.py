@@ -27,7 +27,7 @@ from controller_manager import controller_manager_interface
 help_string = """   Commands:
      <empty>,
      g, h,
-     p, q, list, (un)load, stop, model
+     p, q, list, (un)load, stop, start, model
 """
 
 
@@ -288,14 +288,16 @@ def changeparam():
 def list_controllers():
     os.system("rosservice call /boot/controller_manager/list_controllers")
 
-def load_start_controllers():
+def load_controllers():
     os.system("rosservice call /boot/controller_manager/load_controller /boot/joint_state_controller")
     os.system("rosservice call /boot/controller_manager/load_controller /boot/joint_trajectory_controller")
-    os.system("rosservice call /boot/controller_manager/switch_controller \"{start_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], stop_controllers: [], strictness: 2}\" ")
     # wachten tot de topics weer lopen lijkt nodig.... of buffer groter maken
 
 def stop_controllers():
     os.system("rosservice call /boot/controller_manager/switch_controller \"{stop_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], start_controllers: [], strictness: 2}\"")
+
+def start_controllers():
+    os.system("rosservice call /boot/controller_manager/switch_controller \"{start_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], stop_controllers: [], strictness: 2}\" ")
 
 def unload_controllers():
     os.system("rosservice call /boot/controller_manager/unload_controller /boot/joint_state_controller")
@@ -329,7 +331,7 @@ if __name__ == '__main__':
     # make sure  gazebo is running with model included
     world_pause(False)
     #    we could start gazebo from here...
-    load_start_controllers()
+    load_controllers()
 
     # Connect to the trajectory action server
     #rospy.loginfo('Waiting for boot trajectory controller...')
@@ -372,6 +374,8 @@ if __name__ == '__main__':
             unload_controllers()
         elif next.split()[0] == 'stop':
             stop_controllers()
+        elif next.split()[0] == 'start':
+            start_controllers()
         elif next.split()[0] == 'model':
             reload_model()
         else:
