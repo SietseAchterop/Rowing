@@ -11,7 +11,7 @@
     <robotNamespace>/boot</robotNamespace>
     <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
   </plugin>
-  <!--
+
   <plugin name="sb_rl_sensor" filename="libgazebo_ros_ft_sensor.so">
     <updateRate>50.0</updateRate>
     <topicName>sb_rl_sensor</topicName>
@@ -37,7 +37,7 @@
     <noise>
       <type>gaussian</type>
       <mean>0.0</mean>
-      <stddev>0.003</stddev>
+      <stddev>0.003</stddev> <!-- change this to simulate noise --> 
     </noise>
   </plugin>
 
@@ -52,7 +52,6 @@
     <topicName>pb_sensor</topicName>
     <jointName>port_blade</jointName>
   </plugin>
-  -->
 </gazebo>
 
 <gazebo reference="starboard_rowlock">

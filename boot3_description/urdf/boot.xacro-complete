@@ -22,7 +22,7 @@
     <limit effort="101.0" lower="0" upper="1000" velocity="0.5"/>
   </joint>
 
-  <joint name="rev1" type="fixed">
+  <joint name="rev1" type="revolute">
     <parent link="l1"/>
     <child link="l2"/>
     <origin xyz="0.0 0 -0.2" rpy="0 ${pi/2} 0"/>
@@ -31,7 +31,7 @@
     <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
 
-  <joint name="rev2" type="fixed">
+  <joint name="rev2" type="revolute">
     <parent link="l2"/>
     <child link="skiff"/>
     <origin xyz="0.0 0.0 0.4" rpy="${pi} ${pi/2} 0"/>
@@ -40,16 +40,16 @@
     <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_rowlock" type="fixed">
+  <joint name="starboard_rowlock" type="revolute">
     <parent link="skiff"/>
     <child link="starboard_rowlock_l"/>
-    <origin rpy="0.0  0.0 -0.61" xyz="-3 ${span} 0.42"/>
+    <origin rpy="0.0  0.0 -0.61" xyz="-3 ${span/2} 0.42"/>
     <dynamics damping="0.005" />
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-0.4" upper="1.4" velocity="1.0"/>
   </joint>
 
-  <joint name="port_rowlock" type="fixed">
+  <joint name="port_rowlock" type="revolute">
     <parent link="skiff"/>
     <child link="port_rowlock_l"/>
     <origin rpy="0.0  0.0 0.0" xyz="-3 -${span/2} 0.4"/>
@@ -58,7 +58,7 @@
     <limit effort="101.0" lower="-1.4" upper="1.4" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_oar" type="fixed">
+  <joint name="starboard_oar" type="revolute">
     <parent link="starboard_rowlock_l"/>
     <child link="starboard_oar_l"/>
     <origin rpy="0.0  ${pi/2-0.13} -${pi/2}" xyz="0.0 0.0   0.02"/>
@@ -67,7 +67,7 @@
     <limit effort="101.0" lower="-0.4" upper="0.1" velocity="1.0"/>
   </joint>
 
-  <joint name="port_oar" type="fixed">
+  <joint name="port_oar" type="revolute">
     <parent link="port_rowlock_l"/>
     <child link="port_oar_l"/>
     <origin rpy="0.0  ${pi/2} -${pi/2}" xyz="0.0 0.0   0.02"/>
@@ -76,7 +76,7 @@
     <limit effort="101.0" lower="0.0" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_blade" type="fixed">
+  <joint name="starboard_blade" type="revolute">
     <parent link="starboard_oar_l"/>
     <child link="starboard_blade_l"/>
     <origin rpy="0 0  0.0" xyz="0.0 0.0   -${outer}"/>
@@ -85,7 +85,7 @@
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="port_blade" type="fixed">
+  <joint name="port_blade" type="revolute">
     <parent link="port_oar_l"/>
     <child link="port_blade_l"/>
     <origin rpy="0.0  0 0.0" xyz="0.0 0.0   ${outer}"/>
@@ -110,28 +110,28 @@
     <origin rpy="0 0 0" xyz="-3.495 0.0 0.2"/>
     <dynamics damping="0.005" />
     <axis xyz="1 0 0"/>
-    <limit effort="1000.0" lower="-0.1" upper="0.8" velocity="0.5"/>
+    <limit effort="101.0" lower="-0.1" upper="0.8" velocity="0.5"/>
   </joint>
 
-  <joint name="fp_ll" type="fixed">
+  <joint name="fp_ll" type="revolute">
     <parent link="footplate"/>
     <child link="lowerleg"/>
     <origin rpy="0.0  0.0998 0.0" xyz="0.0 0.0   0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="0.0" upper="${pi/2}" velocity="1.0"/>
+    <limit effort="101.0" lower="0.0" upper="${pi/2}" velocity="1.0"/>
   </joint>
 
-  <joint name="knee" type="fixed">
+  <joint name="knee" type="revolute">
     <parent link="lowerleg"/>
     <child link="upperleg_1"/>
     <origin rpy="0.0  0 0.0" xyz="-0.5 0.0   0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
-    <limit effort="3000.0" lower="-3.1" upper="0" velocity="1.0"/>
+    <limit effort="1000.0" lower="-3.1" upper="0" velocity="1.0"/>
   </joint>
 
-  <joint name="hip1" type="fixed">
+  <joint name="hip1" type="revolute">
     <parent link="seat"/>
     <child link="upperleg_2"/>
     <origin rpy="0  0.0998 0.0" xyz="0.0 0.0   0.1"/>
@@ -140,16 +140,16 @@
     <limit effort="101.0" lower="-1.6" upper="0" velocity="1.0"/>
   </joint>
 
-  <joint name="hip2" type="fixed">
+  <joint name="hip2" type="revolute">
     <parent link="seat"/>
     <child link="back_low"/>
     <origin rpy="0  -${pi/2+0.34} 0.0" xyz="0.0 0.0   0.1"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
-    <limit effort="5000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
 
-  <joint name="back_lh" type="fixed">
+  <joint name="back_lh" type="revolute">
     <parent link="back_low"/>
     <child link="back_high"/>
     <origin rpy="0  0.0 0.0" xyz="0.3 0.0   0.0"/>
@@ -174,7 +174,7 @@
     <axis xyz="0 0 1" />
     <dynamics damping="0.005" />
     <!--    <limit effort="101.0" lower="-1.5" upper="0.5" velocity="1.0"/> -->
-    <limit effort="1000.0" lower="-0.1" upper="0.1" velocity="1.0"/>    
+    <limit effort="101.0" lower="-0.1" upper="0.1" velocity="1.0"/>    
   </joint>
   <link name="left_shoulder_xx_link">
     <inertial>
@@ -189,7 +189,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="shoulder_iets" type="fixed" >
+  <joint name="shoulder_iets" type="revolute" >
     <parent link="left_shoulder_xx_link" />
     <child link="left_shoulder_psi_link" />
     <origin rpy="-0.803 0.0 0.0" xyz="0.0 0.0   0.0"/>
@@ -211,7 +211,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="LShoulderTheta" type="fixed" >
+  <joint name="LShoulderTheta" type="revolute" >
     <parent link="left_shoulder_psi_link"/>
     <child link="arm_l_upper"/>
       <origin rpy="0 0.68 0" xyz="0 0.0 0.0"/>
@@ -222,7 +222,7 @@
   </joint>
 
   <!-- 2D joint right shoulder -->
-  <joint name="shoulder_r" type="fixed" >
+  <joint name="shoulder_r" type="revolute" >
     <parent link="shoulder_link" />
     <child link="right_shoulder_psi_link" />
     <origin rpy="0.0 ${pi}  0.0" xyz="0.0 -0.2   0.0"/>
@@ -243,7 +243,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="RShoulderTheta" type="fixed" >
+  <joint name="RShoulderTheta" type="revolute" >
     <parent link="right_shoulder_psi_link"/>
     <child link="arm_r_upper"/>
     <axis xyz="0 1 0" />
@@ -252,7 +252,7 @@
   </joint>
 
   <!-- 2D joint left elbow -->
-  <joint name="LElbowTheta" type="fixed" >
+  <joint name="LElbowTheta" type="revolute" >
     <parent link="arm_l_upper"/>
     <child link="left_elbow_psi_link"/>
     <origin rpy="0.0 -1.94  0.0" xyz="-0.35 0.0  0.0"/>
@@ -273,7 +273,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="elbow_left" type="fixed">
+  <joint name="elbow_left" type="revolute">
     <parent link="left_elbow_psi_link"/>
     <child link="arm_l_lower_1"/>
     <origin rpy="0 0 -0.09" xyz="0 0.0 0.0"/>
@@ -325,7 +325,7 @@
   </link>
 
   <!-- 3D handle joint -->
-  <joint name="handle_left_j1" type="fixed">
+  <joint name="handle_left_j1" type="revolute">
     <parent link="starboard_oar_l"/>
     <child link="handle_left_l1"/>
     <origin rpy="0.209 0 ${pi/2}" xyz="0 0.0 ${inner}"/>
@@ -346,7 +346,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="handle_left_j2" type="fixed">
+  <joint name="handle_left_j2" type="revolute">
     <parent link="handle_left_l1"/>
     <child link="handle_left_l2"/>
     <origin rpy="0 0 0.06" xyz="0 0.0 0.0"/>
@@ -367,7 +367,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="handle_left_j3" type="fixed">
+  <joint name="handle_left_j3" type="revolute">
     <parent link="handle_left_l2"/>
     <child link="arm_l_lower_2"/>
     <origin rpy="0 -0.16 0" xyz="0 0.0 0.0"/>
@@ -378,7 +378,7 @@
 
 
 
-  <joint name="head_joint" type="fixed">
+  <joint name="head_joint" type="revolute">
     <parent link="shoulder_link"/>
     <child link="head"/>
     <origin rpy="0  0.0 0.0" xyz="0.2 0.0   0.0"/>
@@ -709,6 +709,12 @@
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <inertia ixx="0.013" ixy="0" ixz="0" iyy="0.0004" iyz="0" izz="0.013"/>
     </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0  0.0   0.0"/>
+      <geometry>
+        <box size="0.05 0.4 0.05"/>
+      </geometry>
+    </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0   0.0"/>
       <geometry>
@@ -724,6 +730,12 @@
       <origin rpy="0 0 0" xyz="-0.175 0.0 0.0"/>
       <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
     </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.175 0.0   0.0"/>
+      <geometry>
+        <box size="0.35 0.05 0.05"/>
+      </geometry>
+    </collision>
     <visual>
       <origin rpy="0 0 0" xyz="-0.175 0.0   0.0"/>
       <geometry>
@@ -818,7 +830,7 @@
 
 <!-- Boat transmissions -->
 
-<!--
+
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="starboard_rowlock">
@@ -867,7 +879,7 @@
     <actuator name="motor5">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-st  </transmission>
+  </transmission>
 
   <transmission name="tran6">
     <type>transmission_interface/SimpleTransmission</type>
@@ -879,6 +891,7 @@ st  </transmission>
     </actuator>
   </transmission>
 
+  <!-- Rower transmissions -->
 
   <transmission name="tran7">
     <type>transmission_interface/SimpleTransmission</type>
@@ -919,7 +932,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
--->
+
   <transmission name="tran11">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder_l">
@@ -929,7 +942,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-<!--
+
   <transmission name="tran12">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder_iets">
@@ -950,7 +963,7 @@ st  </transmission>
     </actuator>
   </transmission>
 
--->  
+  
 
 
 
