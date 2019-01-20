@@ -49,8 +49,13 @@ arm_joints = ['starboard_blade',
               'LShoulderTheta' ]
 """
 arm_joints = [
+              'knee',
+              'hip2',
+              'back_lh',
               'shoulder_l',
-]
+              'shoulder_iets',
+              'LShoulderTheta' ]
+
 tfstart = 0
 
 """
@@ -107,8 +112,8 @@ def jscallback(data):
             # gebeurd vrijwel nooit
             print ('timestamp error', timestamp, timestamp-bstarttime)
         # port starboard rowlock
-        p_knee = 0#jsts.position[2]
-        hip2 = jsts.position[0]
+        p_knee = jsts.position[4]
+        hip2 = jsts.position[3]
         e_port_rowlock = 0#jsts.effort[2]
         e_starboard_rowlock = 0#jsts.effort[5]
         #print ('position  %d   %1.2f %1.2f' % (timestamp, p_knee, hip2))
@@ -161,7 +166,7 @@ def ssbcb(data):
 def create_movegoals():
     global repeat
     # Initially go to proper position (use arm_joints order)
-    move_goals  = [[0.0]]
+    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
@@ -171,9 +176,9 @@ def create_movegoals():
     cycle_times = [ 1.0, 2.0 ]
     """
     # default values
-    cycle_goals = [[0.0],
-                   [0.5], [-1.0]]
-    cycle_times = [ 1.0, 1.0, 1.0 ]
+    cycle_goals = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                   [-3.0, -1.0, 0.3, 0.0, 0.0, 0.0, ]]
+    cycle_times = [ 1.0, 1.0 ]
 
     # calculate complete session:
     for i in range(repeat):
