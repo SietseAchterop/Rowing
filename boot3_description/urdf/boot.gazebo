@@ -142,7 +142,7 @@
 
 <gazebo>
   <joint name="lower12" type="fixed">
-    <pose>0.0 0.0 0 0 0 0.1</pose>
+    <pose>0.25 0.0 0 0 0 0.0</pose>
     <parent>upperleg_1</parent>
     <child>upperleg_2</child>
   </joint>

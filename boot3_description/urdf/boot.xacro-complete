@@ -52,7 +52,7 @@
   <joint name="port_rowlock" type="revolute">
     <parent link="skiff"/>
     <child link="port_rowlock_l"/>
-    <origin rpy="0.0  0.0 0.0" xyz="-3 -${span/2} 0.4"/>
+    <origin rpy="0.0  0.0 0.61" xyz="-3 -${span/2} 0.4"/>
     <dynamics damping="0.005" />
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-1.4" upper="1.4" velocity="1.0"/>
@@ -70,7 +70,7 @@
   <joint name="port_oar" type="revolute">
     <parent link="port_rowlock_l"/>
     <child link="port_oar_l"/>
-    <origin rpy="0.0  ${pi/2} -${pi/2}" xyz="0.0 0.0   0.02"/>
+    <origin rpy="0.0  ${pi/2+0.13} -${pi/2}" xyz="0.0 0.0   0.02"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="0.0" upper="0.4" velocity="1.0"/>
@@ -107,7 +107,7 @@
   <joint name="sliding" type="prismatic">
     <parent link="skiff"/>
     <child link="seat"/>
-    <origin rpy="0 0 0" xyz="-3.495 0.0 0.2"/>
+    <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
     <dynamics damping="0.005" />
     <axis xyz="1 0 0"/>
     <limit effort="101.0" lower="-0.1" upper="0.8" velocity="0.5"/>
@@ -116,7 +116,7 @@
   <joint name="fp_ll" type="revolute">
     <parent link="footplate"/>
     <child link="lowerleg"/>
-    <origin rpy="0.0  0.0998 0.0" xyz="0.0 0.0   0.0"/>
+    <origin rpy="0.0  0.1001675 0.0" xyz="0.0 0.0   0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="0.0" upper="${pi/2}" velocity="1.0"/>
@@ -134,7 +134,7 @@
   <joint name="hip1" type="revolute">
     <parent link="seat"/>
     <child link="upperleg_2"/>
-    <origin rpy="0  0.0998 0.0" xyz="0.0 0.0   0.1"/>
+    <origin rpy="0  0.1001675 0.0" xyz="0.0 0.0   0.1"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="-1.6" upper="0" velocity="1.0"/>
