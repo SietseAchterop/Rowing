@@ -3,15 +3,15 @@
     <link name='l1'>
       <pose frame=''>0 0 0.25 0 -0 0</pose>
       <inertial>
-        <pose frame=''>3.38926 -0.024454 -0.130816 0 -0 0</pose>
-        <mass>90.25</mass>
+        <pose frame=''>3.37273 -0.029725 -0.134321 0 -0 0</pose>
+        <mass>90.35</mass>
         <inertia>
-          <ixx>30.3493</ixx>
-          <ixy>-4.09565</ixy>
-          <ixz>-0.118261</ixz>
-          <iyy>227.864</iyy>
-          <iyz>-0.0635923</iyz>
-          <izz>256.645</izz>
+          <ixx>27.7688</ixx>
+          <ixy>-0.660609</ixy>
+          <ixz>0.0254272</ixz>
+          <iyy>229.152</iyy>
+          <iyz>0.879492</iyz>
+          <izz>255.731</izz>
         </inertia>
       </inertial>
       <collision name='l1_fixed_joint_lump__skiff_collision'>
@@ -36,7 +36,7 @@
         </surface>
       </collision>
       <collision name='l1_fixed_joint_lump__port_rowlock_l_collision_1'>
-        <pose frame=''>3.4 0.8 0.2 0 0 3.14159</pose>
+        <pose frame=''>3.4 0.8 0.2 0 0 -2.53159</pose>
         <geometry>
           <box>
             <size>0.02 0.02 0.04</size>
@@ -55,7 +55,7 @@
         </surface>
       </collision>
       <collision name='l1_fixed_joint_lump__port_oar_l_collision_2'>
-        <pose frame=''>3.4 1.365 0.22 -3.14159 1.57079 -1.5708</pose>
+        <pose frame=''>3.07906 1.25919 0.146757 -3.14159 1.4408 -0.960796</pose>
         <geometry>
           <cylinder>
             <length>2.27</length>
@@ -75,7 +75,7 @@
         </surface>
       </collision>
       <collision name='l1_fixed_joint_lump__port_blade_l_collision_3'>
-        <pose frame=''>3.4 2.78 0.2 -3.14159 0.170796 -1.5708</pose>
+        <pose frame=''>2.27678 2.40708 -0.056507 -3.14159 0.040796 -0.960796</pose>
         <geometry>
           <box>
             <size>0.2 0.1 0.03</size>
@@ -93,7 +93,15 @@
           </friction>
         </surface>
       </collision>
-      <collision name='l1_fixed_joint_lump__starboard_rowlock_l_collision_4'>
+      <collision name='l1_fixed_joint_lump__footplate_collision_4'>
+        <pose frame=''>2.9 0 0 0 0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.3 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='l1_fixed_joint_lump__starboard_rowlock_l_collision_5'>
         <pose frame=''>3.4 -1.6 0.22 -0 0 2.53159</pose>
         <geometry>
           <box>
@@ -112,7 +120,7 @@
           </friction>
         </surface>
       </collision>
-      <collision name='l1_fixed_joint_lump__starboard_oar_l_collision_5'>
+      <collision name='l1_fixed_joint_lump__starboard_oar_l_collision_6'>
         <pose frame=''>3.07906 -2.05919 0.166757 -0 1.4408 0.960796</pose>
         <geometry>
           <cylinder>
@@ -132,7 +140,7 @@
           </friction>
         </surface>
       </collision>
-      <collision name='l1_fixed_joint_lump__arm_l_lower_2_collision_6'>
+      <collision name='l1_fixed_joint_lump__arm_l_lower_2_collision_7'>
         <pose frame=''>3.94774 -0.945314 0.349299 1.65844 -0.046457 2.36718</pose>
         <geometry>
           <box>
@@ -140,7 +148,7 @@
           </box>
         </geometry>
       </collision>
-      <collision name='l1_fixed_joint_lump__starboard_blade_l_collision_7'>
+      <collision name='l1_fixed_joint_lump__starboard_blade_l_collision_8'>
         <pose frame=''>2.25406 -3.23959 -0.041692 -0 0.040796 0.960796</pose>
         <geometry>
           <box>
@@ -190,7 +198,7 @@
         </material>
       </visual>
       <visual name='l1_fixed_joint_lump__port_rowlock_l_visual_3'>
-        <pose frame=''>3.4 0.8 0.2 0 0 3.14159</pose>
+        <pose frame=''>3.4 0.8 0.2 0 0 -2.53159</pose>
         <geometry>
           <box>
             <size>0.02 0.02 0.04</size>
@@ -204,7 +212,7 @@
         </material>
       </visual>
       <visual name='l1_fixed_joint_lump__port_oar_l_visual_4'>
-        <pose frame=''>3.4 1.365 0.22 -3.14159 1.57079 -1.5708</pose>
+        <pose frame=''>3.07906 1.25919 0.146757 -3.14159 1.4408 -0.960796</pose>
         <geometry>
           <cylinder>
             <length>2.87</length>
@@ -219,7 +227,7 @@
         </material>
       </visual>
       <visual name='l1_fixed_joint_lump__port_blade_l_visual_5'>
-        <pose frame=''>3.4 2.78 0.2 -3.14159 0.170796 -1.5708</pose>
+        <pose frame=''>2.27678 2.40708 -0.056507 -3.14159 0.040796 -0.960796</pose>
         <geometry>
           <box>
             <size>0.2 0.1 0.03</size>
@@ -232,7 +240,15 @@
           </script>
         </material>
       </visual>
-      <visual name='l1_fixed_joint_lump__starboard_rowlock_l_visual_6'>
+      <visual name='l1_fixed_joint_lump__footplate_visual_6'>
+        <pose frame=''>2.9 0 0 0 0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.3 0.1</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='l1_fixed_joint_lump__starboard_rowlock_l_visual_7'>
         <pose frame=''>3.4 -1.6 0.22 -0 0 2.53159</pose>
         <geometry>
           <box>
@@ -246,7 +262,7 @@
           </script>
         </material>
       </visual>
-      <visual name='l1_fixed_joint_lump__starboard_oar_l_visual_7'>
+      <visual name='l1_fixed_joint_lump__starboard_oar_l_visual_8'>
         <pose frame=''>3.07906 -2.05919 0.166757 -0 1.4408 0.960796</pose>
         <geometry>
           <cylinder>
@@ -261,7 +277,7 @@
           </script>
         </material>
       </visual>
-      <visual name='l1_fixed_joint_lump__handle_left_l1_visual_8'>
+      <visual name='l1_fixed_joint_lump__handle_left_l1_visual_9'>
         <pose frame=''>3.89419 -0.892923 0.352782 1.6498 0 2.53159</pose>
         <geometry>
           <box>
@@ -269,7 +285,7 @@
           </box>
         </geometry>
       </visual>
-      <visual name='l1_fixed_joint_lump__handle_left_l2_visual_9'>
+      <visual name='l1_fixed_joint_lump__handle_left_l2_visual_10'>
         <pose frame=''>3.89419 -0.892923 0.352782 1.64994 -0.059813 2.52685</pose>
         <geometry>
           <box>
@@ -277,7 +293,7 @@
           </box>
         </geometry>
       </visual>
-      <visual name='l1_fixed_joint_lump__arm_l_lower_2_visual_10'>
+      <visual name='l1_fixed_joint_lump__arm_l_lower_2_visual_11'>
         <pose frame=''>3.94774 -0.945314 0.349299 1.65844 -0.046457 2.36718</pose>
         <geometry>
           <box>
@@ -285,7 +301,7 @@
           </box>
         </geometry>
       </visual>
-      <visual name='l1_fixed_joint_lump__dummy_link_2_visual_11'>
+      <visual name='l1_fixed_joint_lump__dummy_link_2_visual_12'>
         <pose frame=''>4.0013 -0.997704 0.345816 3.05395 0.046457 -0.774409</pose>
         <geometry>
           <box>
@@ -293,7 +309,7 @@
           </box>
         </geometry>
       </visual>
-      <visual name='l1_fixed_joint_lump__starboard_blade_l_visual_12'>
+      <visual name='l1_fixed_joint_lump__starboard_blade_l_visual_13'>
         <pose frame=''>2.25406 -3.23959 -0.041692 -0 0.040796 0.960796</pose>
         <geometry>
           <box>
@@ -320,59 +336,8 @@
       <child>l1</child>
       <parent>world</parent>
     </joint>
-    <link name='footplate'>
-      <pose frame=''>2.9 0 0.25 0 0 3.14159</pose>
-      <inertial>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <mass>0.1</mass>
-        <inertia>
-          <ixx>0.0008</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>0.000166</iyy>
-          <iyz>0</iyz>
-          <izz>0.0008</izz>
-        </inertia>
-      </inertial>
-      <collision name='footplate_collision'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <box>
-            <size>0.1 0.3 0.1</size>
-          </box>
-        </geometry>
-      </collision>
-      <visual name='footplate_visual'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <box>
-            <size>0.1 0.3 0.1</size>
-          </box>
-        </geometry>
-      </visual>
-    </link>
-    <joint name='sk_fp' type='revolute'>
-      <child>footplate</child>
-      <parent>l1</parent>
-      <axis>
-        <xyz>-1 0 -0</xyz>
-        <limit>
-          <lower>-0.4</lower>
-          <upper>0.4</upper>
-          <effort>101</effort>
-          <velocity>1</velocity>
-        </limit>
-        <dynamics>
-          <damping>0.005</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
-      </axis>
-    </joint>
     <link name='lowerleg'>
-      <pose frame=''>2.9 0 0.25 0 0.0998 -3.14159</pose>
+      <pose frame=''>2.9 0 0.25 0 0.100168 -3.14159</pose>
       <inertial>
         <pose frame=''>-0.25 0 0 0 -0 0</pose>
         <mass>1</mass>
@@ -404,7 +369,7 @@
     </link>
     <joint name='fp_ll' type='revolute'>
       <child>lowerleg</child>
-      <parent>footplate</parent>
+      <parent>l1</parent>
       <axis>
         <xyz>-0 -1 0</xyz>
         <limit>
@@ -423,7 +388,7 @@
       </axis>
     </joint>
     <link name='upperleg_1'>
-      <pose frame=''>3.39751 0 0.299817 0 0.0998 -3.14159</pose>
+      <pose frame=''>3.39749 0 0.3 0 0.100168 -3.14159</pose>
       <inertial>
         <pose frame=''>-0.125 0 0 0 -0 0</pose>
         <mass>1</mass>
@@ -474,7 +439,7 @@
       </axis>
     </joint>
     <link name='seat'>
-      <pose frame=''>3.895 0 0.25 0 0 3.14159</pose>
+      <pose frame=''>3.89514 0 0.25 0 0 3.14159</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <mass>0.1</mass>
@@ -525,7 +490,7 @@
       </axis>
     </joint>
     <link name='upperleg_2'>
-      <pose frame=''>3.895 0 0.35 0 0.0998 -3.14159</pose>
+      <pose frame=''>3.89514 0 0.35 0 0.100168 -3.14159</pose>
       <inertial>
         <pose frame=''>0.125 0 0 0 -0 0</pose>
         <mass>1</mass>
@@ -576,7 +541,7 @@
       </axis>
     </joint>
     <link name='back_low'>
-      <pose frame=''>3.895 0 0.35 3.14159 -1.2308 0</pose>
+      <pose frame=''>3.89514 0 0.35 3.14159 -1.2308 0</pose>
       <inertial>
         <pose frame=''>0.15 0 0 0 -0 0</pose>
         <mass>10</mass>
@@ -627,17 +592,17 @@
       </axis>
     </joint>
     <link name='back_high'>
-      <pose frame=''>3.99505 0 0.632826 3.14159 -1.2308 0</pose>
+      <pose frame=''>3.99519 0 0.632826 3.14159 -1.2308 0</pose>
       <inertial>
         <pose frame=''>0.230923 -0.011875 0 0 -0 0</pose>
         <mass>17.01</mass>
         <inertia>
-          <ixx>0.0688013</ixx>
+          <ixx>0.0878013</ixx>
           <ixy>-0.0210464</ixy>
           <ixz>5.07472e-15</ixz>
-          <iyy>0.24816</iyy>
+          <iyy>0.32466</iyy>
           <iyz>6.80899e-15</iyz>
-          <izz>0.299261</izz>
+          <izz>0.392261</izz>
         </inertia>
       </inertial>
       <collision name='back_high_collision'>
@@ -726,21 +691,29 @@
       </axis>
     </joint>
     <link name='left_shoulder_xx_link'>
-      <pose frame=''>4.09509 -0.2 0.915653 -2.79032 -1.20769 -0.373618</pose>
+      <pose frame=''>4.09523 -0.2 0.915653 -2.79032 -1.20769 -0.373618</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
-        <mass>0.01</mass>
+        <mass>0.02</mass>
         <inertia>
-          <ixx>1.67e-07</ixx>
+          <ixx>3.34e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>1.67e-07</iyy>
+          <iyy>3.34e-07</iyy>
           <iyz>0</iyz>
-          <izz>1.67e-07</izz>
+          <izz>3.34e-07</izz>
         </inertia>
       </inertial>
       <visual name='left_shoulder_xx_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='left_shoulder_xx_link_fixed_joint_lump__left_shoulder_psi_link_visual_1'>
+        <pose frame=''>0 0 0 -0.803 0 0</pose>
         <geometry>
           <box>
             <size>0.01 0.01 0.01</size>
@@ -768,51 +741,8 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-    <link name='left_shoulder_psi_link'>
-      <pose frame=''>4.09509 -0.2 0.915653 2.68986 -1.20769 -0.373618</pose>
-      <inertial>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <mass>0.01</mass>
-        <inertia>
-          <ixx>1.67e-07</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>1.67e-07</iyy>
-          <iyz>0</iyz>
-          <izz>1.67e-07</izz>
-        </inertia>
-      </inertial>
-      <visual name='left_shoulder_psi_link_visual'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <box>
-            <size>0.01 0.01 0.01</size>
-          </box>
-        </geometry>
-      </visual>
-    </link>
-    <joint name='shoulder_iets' type='revolute'>
-      <child>left_shoulder_psi_link</child>
-      <parent>left_shoulder_xx_link</parent>
-      <axis>
-        <xyz>0.330673 -0.129634 0.9348</xyz>
-        <limit>
-          <lower>-1.5</lower>
-          <upper>1.5</upper>
-          <effort>100</effort>
-          <velocity>1</velocity>
-        </limit>
-        <dynamics>
-          <damping>0.005</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
-      </axis>
-    </joint>
     <link name='arm_l_upper'>
-      <pose frame=''>4.09509 -0.2 0.915653 0.42859 -1.18849 1.94121</pose>
+      <pose frame=''>4.09523 -0.2 0.915653 0.42859 -1.18849 1.94121</pose>
       <inertial>
         <pose frame=''>-0.245218 0.004538 -0.046902 0 -0 0</pose>
         <mass>2.02</mass>
@@ -860,7 +790,7 @@
     </link>
     <joint name='LShoulderTheta' type='revolute'>
       <child>arm_l_upper</child>
-      <parent>left_shoulder_psi_link</parent>
+      <parent>left_shoulder_xx_link</parent>
       <axis>
         <xyz>-0.708285 -0.688691 0.155042</xyz>
         <limit>
@@ -879,13 +809,9 @@
       </axis>
     </joint>
     <self_collide>1</self_collide>
-    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
-      <robotNamespace>/boot</robotNamespace>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-    </plugin>
     <static>0</static>
     <joint name='lower12' type='fixed'>
-      <pose frame=''>0 0 0 0 -0 0.1</pose>
+      <pose frame=''>0.25 0 0 0 -0 0</pose>
       <parent>upperleg_1</parent>
       <child>upperleg_2</child>
     </joint>

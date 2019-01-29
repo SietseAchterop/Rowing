@@ -130,7 +130,7 @@
   </gazebo>
   <gazebo>
     <joint name="lower12" type="fixed">
-      <pose>0.0 0.0 0 0 0 0.1</pose>
+      <pose>0.25 0.0 0 0 0 0.0</pose>
       <parent>upperleg_1</parent>
       <child>upperleg_2</child>
     </joint>
@@ -201,6 +201,7 @@
     <parent link="skiff"/>
     <child link="starboard_rowlock_l"/>
     <origin rpy="0.0  0.0 -0.61" xyz="-3 1.6 0.42"/>
+    <!-- span/2  -->
     <dynamics damping="0.005"/>
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-0.4" upper="1.4" velocity="1.0"/>
@@ -208,7 +209,7 @@
   <joint name="port_rowlock" type="fixed">
     <parent link="skiff"/>
     <child link="port_rowlock_l"/>
-    <origin rpy="0.0  0.0 0.0" xyz="-3 -0.8 0.4"/>
+    <origin rpy="0.0  0.0 0.61" xyz="-3 -0.8 0.4"/>
     <dynamics damping="0.005"/>
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-1.4" upper="1.4" velocity="1.0"/>
@@ -224,7 +225,7 @@
   <joint name="port_oar" type="fixed">
     <parent link="port_rowlock_l"/>
     <child link="port_oar_l"/>
-    <origin rpy="0.0  1.57079632679 -1.57079632679" xyz="0.0 0.0   0.02"/>
+    <origin rpy="0.0  1.70079632679 -1.57079632679" xyz="0.0 0.0   0.02"/>
     <dynamics damping="0.005"/>
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="0.0" upper="0.4" velocity="1.0"/>
@@ -246,7 +247,7 @@
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
   <!-- Rower joints -->
-  <joint name="sk_fp" type="revolute">
+  <joint name="sk_fp" type="fixed">
     <parent link="skiff"/>
     <child link="footplate"/>
     <origin rpy="0.0  0 0.0" xyz="-2.5 0.0  0.2"/>
@@ -256,7 +257,7 @@
   <joint name="sliding" type="prismatic">
     <parent link="skiff"/>
     <child link="seat"/>
-    <origin rpy="0 0 0" xyz="-3.495 0.0 0.2"/>
+    <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
     <dynamics damping="0.005"/>
     <axis xyz="1 0 0"/>
     <limit effort="1000.0" lower="-0.1" upper="0.8" velocity="0.5"/>
@@ -264,7 +265,7 @@
   <joint name="fp_ll" type="revolute">
     <parent link="footplate"/>
     <child link="lowerleg"/>
-    <origin rpy="0.0  0.0998 0.0" xyz="0.0 0.0   0.0"/>
+    <origin rpy="0.0  0.1001675 0.0" xyz="0.0 0.0   0.0"/>
     <dynamics damping="0.005"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="0.0" upper="1.57079632679" velocity="1.0"/>
@@ -280,7 +281,7 @@
   <joint name="hip1" type="revolute">
     <parent link="seat"/>
     <child link="upperleg_2"/>
-    <origin rpy="0  0.0998 0.0" xyz="0.0 0.0   0.1"/>
+    <origin rpy="0  0.1001675 0.0" xyz="0.0 0.0   0.1"/>
     <dynamics damping="0.005"/>
     <axis xyz="0 1 0"/>
     <limit effort="100.0" lower="-1.6" upper="0" velocity="1.0"/>
@@ -330,7 +331,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="shoulder_iets" type="revolute">
+  <joint name="shoulder_iets" type="fixed">
     <parent link="left_shoulder_xx_link"/>
     <child link="left_shoulder_psi_link"/>
     <origin rpy="-0.803 0.0 0.0" xyz="0.0 0.0   0.0"/>
@@ -534,7 +535,7 @@
     <inertial>
       <mass value="0.01"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.2"/>
-      <inertia ixx="0.000133" ixy="0" ixz="0" iyy="0.1=000133" iyz="0" izz="0.000000167"/>
+      <inertia ixx="0.000133" ixy="0" ixz="0" iyy="0.000133" iyz="0" izz="0.000000167"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.2"/>
@@ -550,7 +551,6 @@
       <origin rpy="0 0 0" xyz="-3 0.0 0.05"/>
       <inertia ixx="3.2" ixy="0" ixz="0" iyy="225" iyz="0" izz="228"/>
       <!-- weight= 60 -->
-      <!--      <inertia ixx="0.6" ixy="0" ixz="0" iyy="11" iyz="0" izz="11.8"/>  -->
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="-3 0.0   0.05"/>
@@ -802,7 +802,7 @@
     <inertial>
       <mass value="10.0"/>
       <origin rpy="0 0 0" xyz="0.15 0.0 0.0"/>
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.0005" iyz="0" izz="0.001"/>
+      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.077" iyz="0" izz="0.094"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0.15.  0.0   0.0"/>
@@ -839,9 +839,6 @@
     <visual>
       <origin rpy="0 0 0" xyz="-0.175 0.0   0.0"/>
       <geometry>
-        
-	fg
-        
         <box size="0.35 0.05 0.05"/>
       </geometry>
     </visual>
@@ -1016,9 +1013,6 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  
---&gt;
-  
   <transmission name="tran11">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder_l">
@@ -1028,6 +1022,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <!--
   <transmission name="tran12">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder_iets">
@@ -1037,6 +1032,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+-->
   <transmission name="tran13">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="LShoulderTheta">
@@ -1046,12 +1042,5 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  
-
---&gt;  
-
-
-
-
 </robot>
 
