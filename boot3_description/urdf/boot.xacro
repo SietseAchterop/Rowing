@@ -188,7 +188,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="shoulder_iets" type="revolute" >
+  <joint name="shoulder_iets" type="fixed" >
     <parent link="left_shoulder_xx_link" />
     <child link="left_shoulder_psi_link" />
     <origin rpy="-0.803 0.0 0.0" xyz="0.0 0.0   0.0"/>
@@ -212,7 +212,7 @@
   <joint name="LShoulderTheta" type="revolute" >
     <parent link="left_shoulder_psi_link"/>
     <child link="arm_l_upper"/>
-      <origin rpy="0 0.68 0" xyz="0 0.0 0.0"/>
+    <origin rpy="0 0.68 0" xyz="0 0.0 0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.005" />
     <limit effort="100.0" lower="-2.0" upper="1.0" velocity="1.0"/> 
@@ -684,7 +684,7 @@
     <inertial>
       <mass value="10.0"/> 
       <origin rpy="0 0 0" xyz="0.15 0.0 0.0"/>
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.0005" iyz="0" izz="0.001"/>
+      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.077" iyz="0" izz="0.094"/>
     </inertial>
     <collision>
       <origin rpy="0 0 0" xyz="0.15.  0.0   0.0"/>
@@ -724,7 +724,6 @@
     <visual>
       <origin rpy="0 0 0" xyz="-0.175 0.0   0.0"/>
       <geometry>
-	fg
         <box size="0.35 0.05 0.05"/>
       </geometry>
     </visual>
@@ -910,7 +909,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
--->
+
   <transmission name="tran11">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder_l">
@@ -920,7 +919,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
+<!--
   <transmission name="tran12">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder_iets">
@@ -930,7 +929,7 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
+-->
   <transmission name="tran13">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="LShoulderTheta">
@@ -940,9 +939,6 @@ st  </transmission>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
--->  
-
 
 
 </robot>
