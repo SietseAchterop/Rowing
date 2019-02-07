@@ -286,35 +286,6 @@
     <dynamics damping="0.005"/>
     <limit effort="100.0" lower="-2.0" upper="1.0" velocity="1.0"/>
   </joint>
-  <!-- 2D joint right shoulder -->
-  <joint name="shoulder_r" type="fixed">
-    <parent link="shoulder_link"/>
-    <child link="right_shoulder_psi_link"/>
-    <origin rpy="0.0 3.14159265359  0.0" xyz="0.0 -0.2   0.0"/>
-    <axis xyz="0 0 1"/>
-    <dynamics damping="0.005"/>
-    <limit effort="101.0" lower="-1.0" upper="0.5" velocity="1.0"/>
-  </joint>
-  <link name="right_shoulder_psi_link">
-    <inertial>
-      <mass value="0.01"/>
-      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </visual>
-  </link>
-  <joint name="RShoulderTheta" type="fixed">
-    <parent link="right_shoulder_psi_link"/>
-    <child link="arm_r_upper"/>
-    <axis xyz="0 1 0"/>
-    <dynamics damping="0.005"/>
-    <limit effort="101.0" lower="-1.5" upper="1.0" velocity="1.0"/>
-  </joint>
   <!-- 2D joint left elbow -->
   <joint name="LElbowTheta" type="fixed">
     <parent link="arm_l_upper"/>
@@ -366,11 +337,6 @@
       </geometry>
     </visual>
   </link>
-  <joint name="head_joint" type="fixed">
-    <parent link="shoulder_link"/>
-    <child link="head"/>
-    <origin rpy="0  0.0 0.0" xyz="0.2 0.0   0.0"/>
-  </joint>
   <!-- Boat links -->
   <link name="world"/>
   <!-- Rower links -->
@@ -535,25 +501,6 @@
       </geometry>
     </visual>
   </link>
-  <link name="arm_r_upper">
-    <inertial>
-      <mass value="1.0"/>
-      <origin rpy="0 0 0" xyz="0.175 0.0 0.0"/>
-      <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.175 0.0   0.0"/>
-      <geometry>
-        <box size="0.35 0.05 0.05"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.175 0.0   0.0"/>
-      <geometry>
-        <box size="0.35 0.05 0.05"/>
-      </geometry>
-    </visual>
-  </link>
   <!-- lower arm in two to create a kinematic loop in gazebo -->
   <link name="arm_l_lower_1">
     <inertial>
@@ -565,25 +512,6 @@
       <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
       <geometry>
         <box size="0.20 0.05 0.05"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="head">
-    <inertial>
-      <mass value="5.0"/>
-      <origin rpy="0 0 0" xyz="-0.1 0.0 0.0"/>
-      <inertia ixx="0.0128" ixy="0" ixz="0" iyy="0.0128" iyz="0" izz="0.0128"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
-      <geometry>
-        <sphere radius="0.08"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
-      <geometry>
-        <sphere radius="0.08"/>
       </geometry>
     </visual>
   </link>
