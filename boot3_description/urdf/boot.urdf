@@ -172,90 +172,16 @@
   <!--
  lengths of links, musle power?
 -->
-  <joint name="prism" type="fixed">
-    <!-- prismatic -->
-    <parent link="world"/>
-    <child link="l1"/>
-    <origin rpy="0 0 0" xyz="0 0 0.25"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="101.0" lower="0" upper="1000" velocity="0.5"/>
-  </joint>
-  <joint name="rev1" type="fixed">
-    <parent link="l1"/>
-    <child link="l2"/>
-    <origin rpy="0 1.57079632679 0" xyz="0.0 0 -0.2"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
-  </joint>
-  <joint name="rev2" type="fixed">
-    <parent link="l2"/>
-    <child link="skiff"/>
-    <origin rpy="3.14159265359 1.57079632679 0" xyz="0.0 0.0 0.4"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
-  </joint>
-  <joint name="starboard_rowlock" type="fixed">
-    <parent link="skiff"/>
-    <child link="starboard_rowlock_l"/>
-    <origin rpy="0.0  0.0 -0.61" xyz="-3 1.6 0.42"/>
-    <!-- span/2  -->
-    <dynamics damping="0.005"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="101.0" lower="-0.4" upper="1.4" velocity="1.0"/>
-  </joint>
-  <joint name="port_rowlock" type="fixed">
-    <parent link="skiff"/>
-    <child link="port_rowlock_l"/>
-    <origin rpy="0.0  0.0 0.61" xyz="-3 -0.8 0.4"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="101.0" lower="-1.4" upper="1.4" velocity="1.0"/>
-  </joint>
-  <joint name="starboard_oar" type="fixed">
-    <parent link="starboard_rowlock_l"/>
-    <child link="starboard_oar_l"/>
-    <origin rpy="0.0  1.44079632679 -1.57079632679" xyz="0.0 0.0   0.02"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-0.4" upper="0.1" velocity="1.0"/>
-  </joint>
-  <joint name="port_oar" type="fixed">
-    <parent link="port_rowlock_l"/>
-    <child link="port_oar_l"/>
-    <origin rpy="0.0  1.70079632679 -1.57079632679" xyz="0.0 0.0   0.02"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="0.0" upper="0.4" velocity="1.0"/>
-  </joint>
-  <joint name="starboard_blade" type="fixed">
-    <parent link="starboard_oar_l"/>
-    <child link="starboard_blade_l"/>
-    <origin rpy="0 0  0.0" xyz="0.0 0.0   -2.0"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
-  </joint>
-  <joint name="port_blade" type="fixed">
-    <parent link="port_oar_l"/>
-    <child link="port_blade_l"/>
-    <origin rpy="0.0  0 0.0" xyz="0.0 0.0   2.0"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
-  </joint>
   <!-- Rower joints -->
   <joint name="sk_fp" type="fixed">
-    <parent link="skiff"/>
+    <parent link="world"/>
     <child link="footplate"/>
     <origin rpy="0.0  0 0.0" xyz="-2.5 0.0  0.2"/>
     <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
   <joint name="sliding" type="prismatic">
-    <parent link="skiff"/>
+    <parent link="world"/>
     <child link="seat"/>
     <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
     <dynamics damping="0.005"/>
@@ -440,77 +366,6 @@
       </geometry>
     </visual>
   </link>
-  <joint name="dummy_2" type="fixed">
-    <parent link="arm_l_lower_2"/>
-    <child link="dummy_link_2"/>
-    <origin rpy="1.57079632679 3.14159265359  0.0" xyz="-0.15 0.0 0.0"/>
-    <dynamics damping="0.005"/>
-    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
-  </joint>
-  <link name="dummy_link_2">
-    <inertial>
-      <mass value="0.01"/>
-      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </visual>
-  </link>
-  <!-- 3D handle joint -->
-  <joint name="handle_left_j1" type="fixed">
-    <parent link="starboard_oar_l"/>
-    <child link="handle_left_l1"/>
-    <origin rpy="0.209 0 1.57079632679" xyz="0 0.0 0.87"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
-  </joint>
-  <link name="handle_left_l1">
-    <inertial>
-      <mass value="0.01"/>
-      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </visual>
-  </link>
-  <joint name="handle_left_j2" type="fixed">
-    <parent link="handle_left_l1"/>
-    <child link="handle_left_l2"/>
-    <origin rpy="0 0 0.06" xyz="0 0.0 0.0"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0  0 1"/>
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
-  </joint>
-  <link name="handle_left_l2">
-    <inertial>
-      <mass value="0.01"/>
-      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </visual>
-  </link>
-  <joint name="handle_left_j3" type="fixed">
-    <parent link="handle_left_l2"/>
-    <child link="arm_l_lower_2"/>
-    <origin rpy="0 -0.16 0" xyz="0 0.0 0.0"/>
-    <dynamics damping="0.005"/>
-    <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
-  </joint>
   <joint name="head_joint" type="fixed">
     <parent link="shoulder_link"/>
     <child link="head"/>
@@ -518,169 +373,6 @@
   </joint>
   <!-- Boat links -->
   <link name="world"/>
-  <link name="l1">
-    <inertial>
-      <mass value="0.01"/>
-      <origin rpy="0 0 0" xyz="0 0.0 -0.1"/>
-      <inertia ixx="0.000033" ixy="0" ixz="0" iyy="0.000033" iyz="0" izz="0.000000167"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 -0.1"/>
-      <geometry>
-        <box size="0.01 0.01 0.20"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="l2">
-    <inertial>
-      <mass value="0.01"/>
-      <origin rpy="0 0 0" xyz="0 0.0 0.2"/>
-      <inertia ixx="0.000133" ixy="0" ixz="0" iyy="0.000133" iyz="0" izz="0.000000167"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.2"/>
-      <geometry>
-        <box size="0.01 0.01 0.40"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="skiff">
-    <inertial>
-      <mass value="85"/>
-      <!-- boat plus roeier -->
-      <origin rpy="0 0 0" xyz="-3 0.0 0.05"/>
-      <inertia ixx="3.2" ixy="0" ixz="0" iyy="225" iyz="0" izz="228"/>
-      <!-- weight= 60 -->
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="-3 0.0   0.05"/>
-      <geometry>
-        <box size="6.0 0.7 0.2"/>
-      </geometry>
-    </collision>
-    <visual>
-      <!-- should be a nice skull shape including riggers-->
-      <origin rpy="0 0 0" xyz="-3 0.0   0.05"/>
-      <geometry>
-        <box size="6.0 0.7 0.2"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="starboard_rowlock_l">
-    <inertial>
-      <mass value="0.1"/>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <inertia ixx="0.000017" ixy="0" ixz="0" iyy="0.000017" iyz="0" izz="0.000007"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0   0.0"/>
-      <geometry>
-        <box size="0.02 0.02 0.04"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0   0.0"/>
-      <geometry>
-        <box size="0.02 0.02 0.04"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="port_rowlock_l">
-    <inertial>
-      <mass value="0.1"/>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <inertia ixx="0.000017" ixy="0" ixz="0" iyy="0.000017" iyz="0" izz="0.000007"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0   0.0"/>
-      <geometry>
-        <box size="0.02 0.02 0.04"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.0 0.0   0.0"/>
-      <geometry>
-        <box size="0.02 0.02 0.04"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="starboard_oar_l">
-    <inertial>
-      <mass value="1.0"/>
-      <origin rpy="0 0 0" xyz="0 0 -0.565"/>
-      <inertia ixx="0.6" ixy="0" ixz="0" iyy="0.6" iyz="0" izz="0.001"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0   0   -0.565"/>
-      <geometry>
-        <cylinder length="2.27" radius="0.02"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="0   0.0   -0.565"/>
-      <geometry>
-        <cylinder length="2.87" radius="0.02"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="port_oar_l">
-    <inertial>
-      <mass value="1.0"/>
-      <origin rpy="0 0 0" xyz="0 0 0.565"/>
-      <inertia ixx="0.6" ixy="0" ixz="0" iyy="0.6" iyz="0" izz="0.001"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0   0   0.565"/>
-      <geometry>
-        <cylinder length="2.27" radius="0.02"/>
-        <!-- -0.6 to prevent collissions  -->
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="0   0   0.565"/>
-      <geometry>
-        <cylinder length="2.87" radius="0.02"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="starboard_blade_l">
-    <inertial>
-      <mass value="1.0"/>
-      <origin rpy="0 -1.4 0" xyz="0.02 0 -0.02"/>
-      <inertia ixx="0.0009" ixy="0" ixz="0" iyy="0.0034" iyz="0" izz="0.004"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 -1.4 0" xyz="0.02    0   -0.02"/>
-      <geometry>
-        <box size="0.2 0.1 0.03"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 -1.4 0" xyz="0.02    0   -0.02"/>
-      <geometry>
-        <box size="0.2 0.1 0.03"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="port_blade_l">
-    <inertial>
-      <mass value="1.0"/>
-      <origin rpy="0 1.4 0" xyz="0.02 0 -0.02"/>
-      <inertia ixx="0.0009" ixy="0" ixz="0" iyy="0.0034" iyz="0" izz="0.004"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 1.4 0" xyz="0.02    0   -0.02"/>
-      <geometry>
-        <box size="0.2 0.1 0.03"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 1.4 0" xyz="0.02    0.0  -0.02"/>
-      <geometry>
-        <box size="0.2 0.1 0.03"/>
-      </geometry>
-    </visual>
-  </link>
   <!-- Rower links -->
   <link name="footplate">
     <inertial>
@@ -876,25 +568,6 @@
       </geometry>
     </visual>
   </link>
-  <link name="arm_l_lower_2">
-    <inertial>
-      <mass value="1.0"/>
-      <origin rpy="0 0 0" xyz="-0.075 0.0 0.0"/>
-      <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.075 0.0   0.0"/>
-      <geometry>
-        <box size="0.15 0.05 0.05"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.075 0.0   0.0"/>
-      <geometry>
-        <box size="0.15 0.05 0.05"/>
-      </geometry>
-    </visual>
-  </link>
   <link name="head">
     <inertial>
       <mass value="5.0"/>
@@ -915,68 +588,6 @@
     </visual>
   </link>
   <!-- Boat transmissions -->
-  <!--
-  <transmission name="tran1">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="starboard_rowlock">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor1">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran2">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="port_rowlock">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor2">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran3">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="starboard_oar">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor3">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran4">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="port_oar">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor4">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="tran5">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="starboard_blade">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor5">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-st  </transmission>
-
-  <transmission name="tran6">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="port_blade">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor6">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
--->
   <transmission name="tran7">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="knee">
