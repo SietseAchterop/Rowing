@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <robot>
 
-<gazebo>
-  <self_collide>1</self_collide>
-</gazebo>
 
 <!-- ros_control plugin -->
 <gazebo>
@@ -146,13 +143,12 @@
     <child>upperleg_2</child>
   </joint>
 
-<!--
   <joint name="lowerarm_left" type="fixed">
     <pose>0.0 0.0 0 0 0 0.1</pose>
     <parent>dummy_link_1</parent>
     <child>dummy_link_2</child>
   </joint>
--->
+
 </gazebo>
 
 </robot>

@@ -13,7 +13,7 @@
   <!-- parameters that can be configured -->
   <xacro:include filename="$(find boot3_description)/config/param.xacro" />
 
-  <joint name="prism" type="fixed">  <!-- prismatic -->
+  <joint name="prism" type="prismatic">  <!-- prismatic -->
     <parent link="world"/>
     <child link="l1"/>
     <origin xyz="0 0 0.25" rpy="0 0 0"/>
@@ -43,7 +43,7 @@
   <joint name="starboard_rowlock" type="revolute">
     <parent link="skiff"/>
     <child link="starboard_rowlock_l"/>
-    <origin rpy="0.0  0.0 -0.61" xyz="-3 ${span/2} 0.42"/>
+    <origin rpy="0.0  0.0 -0.57" xyz="-3 ${span/2} 0.42"/>
     <dynamics damping="0.005" />
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-0.4" upper="1.4" velocity="1.0"/>
@@ -104,7 +104,7 @@
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="sliding" type="prismatic">
+  <joint name="sliding" type="prismatic">   <!-- prismatic -->
     <parent link="skiff"/>
     <child link="seat"/>
     <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
@@ -143,7 +143,7 @@
   <joint name="hip2" type="revolute">
     <parent link="seat"/>
     <child link="back_low"/>
-    <origin rpy="0  -${pi/2+0.34} 0.0" xyz="0.0 0.0   0.1"/>
+    <origin rpy="0  -${pi/2+0.329} 0.0" xyz="0.0 0.0   0.1"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
@@ -152,7 +152,7 @@
   <joint name="back_lh" type="revolute">
     <parent link="back_low"/>
     <child link="back_high"/>
-    <origin rpy="0  0.0 0.0" xyz="0.3 0.0   0.0"/>
+    <origin rpy="0  0.011 0.0" xyz="0.3 0.0   0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="0.0" upper="0.5" velocity="1.0"/>
@@ -170,7 +170,7 @@
   <joint name="shoulder_l" type="revolute" >
     <parent link="shoulder_link" />
     <child link="left_shoulder_xx_link" />
-    <origin rpy="0.0 0.0 0.13" xyz="0.0 0.2   0.0"/>
+    <origin rpy="0.0 0.0 0.18" xyz="0.0 0.2   0.0"/>
     <axis xyz="0 0 1" />
     <dynamics damping="0.005" />
     <!--    <limit effort="101.0" lower="-1.5" upper="0.5" velocity="1.0"/> -->
@@ -192,7 +192,7 @@
   <joint name="shoulder_iets" type="revolute" >
     <parent link="left_shoulder_xx_link" />
     <child link="left_shoulder_psi_link" />
-    <origin rpy="-0.803 0.0 0.0" xyz="0.0 0.0   0.0"/>
+    <origin rpy="-0.84 0.0 0.0" xyz="0.0 0.0   0.0"/>
     <axis xyz="1 0 0" />
     <dynamics damping="0.005" />
 <!--    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/> -->
@@ -214,7 +214,7 @@
   <joint name="LShoulderTheta" type="revolute" >
     <parent link="left_shoulder_psi_link"/>
     <child link="arm_l_upper"/>
-    <origin rpy="0 0.68 0" xyz="0 0.0 0.0"/>
+    <origin rpy="0 0.655 0" xyz="0 0.0 0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.005" />
 <!--    <limit effort="101.0" lower="-2.0" upper="1.0" velocity="1.0"/> -->
@@ -227,7 +227,7 @@
     <child link="right_shoulder_psi_link" />
     <origin rpy="0.0 ${pi}  0.0" xyz="0.0 -0.2   0.0"/>
     <axis xyz="0 0 1" />
-    <dynamics damping="0.005" />
+    <dynamics damping="0.5" />
     <limit effort="101.0" lower="-1.0" upper="0.5" velocity="1.0"/>
   </joint>
   <link name="right_shoulder_psi_link">
@@ -247,7 +247,7 @@
     <parent link="right_shoulder_psi_link"/>
     <child link="arm_r_upper"/>
     <axis xyz="0 1 0" />
-    <dynamics damping="0.005" />
+    <dynamics damping="0.5" />
     <limit effort="101.0" lower="-1.5" upper="1.0" velocity="1.0"/>
   </joint>
 
@@ -255,9 +255,9 @@
   <joint name="LElbowTheta" type="revolute" >
     <parent link="arm_l_upper"/>
     <child link="left_elbow_psi_link"/>
-    <origin rpy="0.0 -1.94  0.0" xyz="-0.35 0.0  0.0"/>
+    <origin rpy="0.0 -1.90  0.0" xyz="-0.35 0.0  0.0"/>
     <axis xyz="0 1 0" />
-    <dynamics damping="0.005" />
+    <dynamics damping="0.5" />
     <limit effort="101.0" lower="-0.7" upper="2.0" velocity="1.0"/>
   </joint>
   <link name="left_elbow_psi_link">
@@ -276,8 +276,8 @@
   <joint name="elbow_left" type="revolute">
     <parent link="left_elbow_psi_link"/>
     <child link="arm_l_lower_1"/>
-    <origin rpy="0 0 -0.09" xyz="0 0.0 0.0"/>
-    <dynamics damping="0.005" />
+    <origin rpy="0 0 -0.127" xyz="0 0.0 0.0"/>
+    <dynamics damping="0.5" />
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
@@ -378,7 +378,7 @@
 
 
 
-  <joint name="head_joint" type="revolute">
+  <joint name="head_joint" type="fixed">
     <parent link="shoulder_link"/>
     <child link="head"/>
     <origin rpy="0  0.0 0.0" xyz="0.2 0.0   0.0"/>
