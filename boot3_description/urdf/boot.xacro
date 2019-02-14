@@ -13,6 +13,7 @@
   <!-- parameters that can be configured -->
   <xacro:include filename="$(find boot3_description)/config/param.xacro" />
 
+
   <joint name="prism" type="prismatic">  <!-- prismatic -->
     <parent link="world"/>
     <child link="l1"/>
@@ -97,15 +98,17 @@
   <!-- Rower joints -->
 
   <joint name="sk_fp" type="fixed">
-    <parent link="skiff"/>
+    <parent link="world"/>
     <child link="footplate"/>
     <origin rpy="0.0  0 0.0" xyz="-2.5 0.0  0.2"/>
     <dynamics damping="0.005" />
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
+
   <joint name="sliding" type="prismatic">   <!-- prismatic -->
     <parent link="skiff"/>
+
     <child link="seat"/>
     <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
     <dynamics damping="0.005" />
@@ -303,6 +306,7 @@
       </geometry>
     </visual>
   </link>
+
   <joint name="dummy_2" type="fixed">
     <parent link="arm_l_lower_2"/>
     <child link="dummy_link_2"/>
@@ -383,12 +387,12 @@
     <child link="head"/>
     <origin rpy="0  0.0 0.0" xyz="0.2 0.0   0.0"/>
   </joint>
-
   
   <!-- Boat links -->
 
   <link name="world"/>
   
+
   <link name="l1">
     <inertial>
       <mass value="0.01"/>
@@ -744,25 +748,6 @@
     </visual>
   </link>
 
-  <link name="arm_r_upper">
-    <inertial>
-      <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="0.175 0.0 0.0"/>
-      <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.175 0.0   0.0"/>
-      <geometry>
-        <box size="0.35 0.05 0.05"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.175 0.0   0.0"/>
-      <geometry>
-        <box size="0.35 0.05 0.05"/>
-      </geometry>
-    </visual>
-  </link>
   
   <!-- lower arm in two to create a kinematic loop in gazebo -->
   <link name="arm_l_lower_1">
@@ -785,46 +770,6 @@
     </visual>
   </link>
 
-  <link name="arm_l_lower_2">
-    <inertial>
-      <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="-0.075 0.0 0.0"/>
-      <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.075 0.0   0.0"/>
-      <geometry>
-        <box size="0.15 0.05 0.05"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.075 0.0   0.0"/>
-      <geometry>
-        <box size="0.15 0.05 0.05"/>
-      </geometry>
-    </visual>
-  </link>
-
-
-  <link name="head">
-    <inertial>
-      <mass value="5.0"/> 
-      <origin rpy="0 0 0" xyz="-0.1 0.0 0.0"/>
-      <inertia ixx="0.0128" ixy="0" ixz="0" iyy="0.0128" iyz="0" izz="0.0128"/>
-    </inertial>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
-      <geometry>
-        <sphere radius="0.08"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
-      <geometry>
-        <sphere radius="0.08"/>
-      </geometry>
-    </visual>
-  </link>
 
 
 <!-- Boat transmissions -->
