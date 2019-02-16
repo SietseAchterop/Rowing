@@ -137,6 +137,7 @@
 </gazebo>
 
 <gazebo>
+<!-- close kinematic loops in gazebo -->
   <joint name="lower12" type="fixed">
     <pose>0.25 0.0 0 0 0 0.0</pose>
     <parent>upperleg_1</parent>
@@ -145,8 +146,14 @@
 
   <joint name="lowerarm_left" type="fixed">
     <pose>0.0 0.0 0 0 0 0.1</pose>
-    <parent>dummy_link_1</parent>
-    <child>dummy_link_2</child>
+    <parent>Ldummy_link_1</parent>
+    <child>Ldummy_link_2</child>
+  </joint>
+
+  <joint name="lowerarm_right" type="fixed">
+    <pose>0.0 0.0 0 0 0 0.1</pose>
+    <parent>Rdummy_link_1</parent>
+    <child>Rdummy_link_2</child>
   </joint>
 
 </gazebo>

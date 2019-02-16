@@ -14,5 +14,5 @@ print(ik_solver.get_ik(seed_state,
    dummy link 2
 """
 print(ik_solver.get_ik(seed_state,
-                                 -3.577, 0.174, 0.546, 
+                                 -3.577, 0.174, 0.526, 
                                  0.358, 0.933, 0.033, 0.037))

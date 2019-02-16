@@ -13,7 +13,7 @@
   <!-- parameters that can be configured -->
   <xacro:include filename="$(find boot3_description)/config/param.xacro" />
 
-  <joint name="prism" type="prismatic">  <!-- prismatic -->
+  <joint name="prism" type="prismatic">
     <parent link="world"/>
     <child link="l1"/>
     <origin xyz="0 0 0.25" rpy="0 0 0"/>
@@ -104,7 +104,7 @@
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="sliding" type="prismatic">   <!-- prismatic -->
+  <joint name="sliding" type="fixed">
     <parent link="skiff"/>
     <child link="seat"/>
     <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
@@ -173,8 +173,7 @@
     <origin rpy="0.0 0.0 0.18" xyz="0.0 0.2   0.0"/>
     <axis xyz="0 0 1" />
     <dynamics damping="0.005" />
-    <!--    <limit effort="101.0" lower="-1.5" upper="0.5" velocity="1.0"/> -->
-    <limit effort="101.0" lower="-0.1" upper="0.1" velocity="1.0"/>    
+    <limit effort="101.0" lower="-1.5" upper="0.5" velocity="1.0"/>
   </joint>
   <link name="left_shoulder_xx_link">
     <inertial>
@@ -189,14 +188,13 @@
       </geometry>
     </visual>
   </link>
-  <joint name="shoulder_iets" type="revolute" >
+  <joint name="shoulder_psi_l" type="revolute" >
     <parent link="left_shoulder_xx_link" />
     <child link="left_shoulder_psi_link" />
     <origin rpy="-0.84 0.0 0.0" xyz="0.0 0.0   0.0"/>
     <axis xyz="1 0 0" />
     <dynamics damping="0.005" />
-<!--    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/> -->
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/>
   </joint>
   <link name="left_shoulder_psi_link">
     <inertial>
@@ -217,18 +215,38 @@
     <origin rpy="0 0.655 0" xyz="0 0.0 0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.005" />
-<!--    <limit effort="101.0" lower="-2.0" upper="1.0" velocity="1.0"/> -->
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="101.0" lower="-2.0" upper="1.0" velocity="1.0"/>
   </joint>
 
-  <!-- 2D joint right shoulder -->
+  <!-- 3D joint right shoulder -->
   <joint name="shoulder_r" type="revolute" >
     <parent link="shoulder_link" />
-    <child link="right_shoulder_psi_link" />
-    <origin rpy="0.0 ${pi}  0.0" xyz="0.0 -0.2   0.0"/>
+    <child link="right_shoulder_xx_link" />
+    <origin rpy="0.0 ${pi}  -0.0" xyz="0.0 -0.2   0.0"/>
     <axis xyz="0 0 1" />
-    <dynamics damping="0.5" />
+    <dynamics damping="0.005" />
     <limit effort="101.0" lower="-1.0" upper="0.5" velocity="1.0"/>
+  </joint>
+  <link name="right_shoulder_xx_link">
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="shoulder_psi_r" type="revolute" >
+    <parent link="right_shoulder_xx_link" />
+    <child link="right_shoulder_psi_link" />
+    <origin rpy="2.47 0.0 0.0" xyz="0.0 0.0   0.0"/>
+    <axis xyz="1 0 0" />
+    <dynamics damping="0.005" />
+    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/>
   </joint>
   <link name="right_shoulder_psi_link">
     <inertial>
@@ -246,6 +264,7 @@
   <joint name="RShoulderTheta" type="revolute" >
     <parent link="right_shoulder_psi_link"/>
     <child link="arm_r_upper"/>
+    <origin rpy="${pi} -0.62 0" xyz="0 0.0 0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.5" />
     <limit effort="101.0" lower="-1.5" upper="1.0" velocity="1.0"/>
@@ -283,14 +302,14 @@
   </joint>
 
   <!-- hoe kom ik aan de andere kant van arm_lower_1 en 2 ?  -->
-  <joint name="dummy_1" type="fixed">
+  <joint name="Ldummy_1" type="fixed">
     <parent link="arm_l_lower_1"/>
-    <child link="dummy_link_1"/>
+    <child link="Ldummy_link_1"/>
     <origin rpy="0 0 0.0" xyz="-0.2 0.0 0.0"/>
     <dynamics damping="0.005" />
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
-  <link name="dummy_link_1">
+  <link name="Ldummy_link_1">
     <inertial>
       <mass value="0.01"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
@@ -303,14 +322,14 @@
       </geometry>
     </visual>
   </link>
-  <joint name="dummy_2" type="fixed">
+  <joint name="Ldummy_2" type="fixed">
     <parent link="arm_l_lower_2"/>
-    <child link="dummy_link_2"/>
+    <child link="Ldummy_link_2"/>
     <origin rpy="${pi/2} ${pi}  0.0" xyz="-0.15 0.0 0.0"/>
     <dynamics damping="0.005" />
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
-  <link name="dummy_link_2">
+  <link name="Ldummy_link_2">
     <inertial>
       <mass value="0.01"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
@@ -324,14 +343,14 @@
     </visual>
   </link>
 
-  <!-- 3D handle joint -->
+  <!-- 3D handle joint left -->
   <joint name="handle_left_j1" type="revolute">
     <parent link="starboard_oar_l"/>
     <child link="handle_left_l1"/>
     <origin rpy="0.209 0 ${pi/2}" xyz="0 0.0 ${inner}"/>
     <dynamics damping="0.005" />
     <axis xyz="1 0 0"/>
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
   <link name="handle_left_l1">
     <inertial>
@@ -352,7 +371,7 @@
     <origin rpy="0 0 0.06" xyz="0 0.0 0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0  0 1"/>
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
   <link name="handle_left_l2">
     <inertial>
@@ -373,9 +392,133 @@
     <origin rpy="0 -0.16 0" xyz="0 0.0 0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="-0.2" upper="0.2" velocity="1.0"/>
+    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
 
+  <!-- 2D joint right elbow -->
+  <joint name="RElbowTheta" type="revolute" >
+    <parent link="arm_r_upper"/>
+    <child link="right_elbow_psi_link"/>
+    <origin rpy="0.0 -${pi+1.9 }  0.0" xyz="0.35 0.0  0.0"/>
+    <axis xyz="0 1 0" />
+    <dynamics damping="0.5" />
+    <limit effort="101.0" lower="-2.0" upper="1.0" velocity="1.0"/>
+  </joint>
+  <link name="right_elbow_psi_link">
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="elbow_right" type="revolute">
+    <parent link="right_elbow_psi_link"/>
+    <child link="arm_r_lower_1"/>
+    <origin rpy="0 0 -0.127" xyz="0 0.0 0.0"/>
+    <dynamics damping="0.5" />
+    <axis xyz="0 0 1"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+  </joint>
+
+  <!-- hoe kom ik aan de andere kant van arm_lower_1 en 2 ?  -->
+  <joint name="Rdummy_1" type="fixed">
+    <parent link="arm_r_lower_1"/>
+    <child link="Rdummy_link_1"/>
+    <origin rpy="0 0 0.0" xyz="-0.2 0.0 0.0"/>
+    <dynamics damping="0.005" />
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+  </joint>
+  <link name="Rdummy_link_1">
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="Rdummy_2" type="fixed">
+    <parent link="arm_r_lower_2"/>
+    <child link="Rdummy_link_2"/>
+    <origin rpy="${pi/2} ${pi}  0.0" xyz="-0.15 0.0 0.0"/>
+    <dynamics damping="0.005" />
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+  </joint>
+  <link name="Rdummy_link_2">
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- 3D handle joint right-->
+  <joint name="handle_right_j1" type="revolute">
+    <parent link="port_oar_l"/>
+    <child link="handle_right_l1"/>
+    <origin rpy="-0.23 0 ${pi/2}" xyz="0 0.0 -${inner}"/>
+    <dynamics damping="0.005" />
+    <axis xyz="-1 0 0"/>
+    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
+  </joint>
+  <link name="handle_right_l1">
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="handle_right_j2" type="revolute">
+    <parent link="handle_right_l1"/>
+    <child link="handle_right_l2"/>
+    <origin rpy="0 0 -0.02" xyz="0 0.0 0.0"/>
+    <dynamics damping="0.005" />
+    <axis xyz="0  0 1"/>
+    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
+  </joint>
+  <link name="handle_right_l2">
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="handle_right_j3" type="revolute">
+    <parent link="handle_right_l2"/>
+    <child link="arm_r_lower_2"/>
+    <origin rpy="${pi} 0.1 0" xyz="0 0.0 0.0"/>
+    <dynamics damping="0.005" />
+    <axis xyz="0 1 0"/>
+    <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
+  </joint>
 
 
   <joint name="head_joint" type="fixed">
@@ -805,6 +948,47 @@
     </visual>
   </link>
 
+  <!-- lower arm in two to create a kinematic loop in gazebo -->
+  <link name="arm_r_lower_1">
+    <inertial>
+      <mass value="1.0"/> 
+      <origin rpy="0 0 0" xyz="-0.1 0.0 0.0"/>
+      <inertia ixx="0.0004" ixy="0" ixz="0" iyy="0.0035" iyz="0" izz="0.0035"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
+      <geometry>
+        <box size="0.20 0.05 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.1 0.0   0.0"/>
+      <geometry>
+        <box size="0.20 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="arm_r_lower_2">
+    <inertial>
+      <mass value="1.0"/> 
+      <origin rpy="0 0 0" xyz="-0.075 0.0 0.0"/>
+      <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.002"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.075 0.0   0.0"/>
+      <geometry>
+        <box size="0.15 0.05 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.075 0.0   0.0"/>
+      <geometry>
+        <box size="0.15 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
 
   <link name="head">
     <inertial>
@@ -944,7 +1128,7 @@
 
   <transmission name="tran12">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_iets">
+    <joint name="shoulder_psi_l">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor12">
@@ -958,6 +1142,16 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor13">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran14">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_psi_r">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor14">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
