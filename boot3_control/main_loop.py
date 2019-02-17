@@ -37,25 +37,10 @@ help_string = """   Commands:
 
 
 # globals
-# All joints to control
-"""
-arm_joints = ['starboard_blade',
-              'port_blade',
-              'knee',
-              'hip2',
-              'back_lh',
-              'shoulder_l',
-              'shoulder_iets',
-              'LShoulderTheta' ]
-"""
+# All 19 joints to control
 arm_joints = [
-              'knee',
-              'hip2',
-              'back_lh',
-              'shoulder_l',
-              'shoulder_iets',
-              'LShoulderTheta' ]
-
+    'knee', 'hip2', 'back_lh', 'shoulder_l', 'shoulder_psi_l', 'shoulder_theta_l', 'elbow_theta_l', 'elbow_left', 'handle_left_j1', 'handle_left_j2',
+    'handle_left_j3', 'shoulder_r', 'shoulder_psi_r', 'shoulder_theta_r', 'elbow_theta_r', 'elbow_right', 'handle_right_j1', 'handle_right_j2', 'handle_right_j3' ]
 tfstart = 0
 
 """
@@ -166,7 +151,7 @@ def ssbcb(data):
 def create_movegoals():
     global repeat
     # Initially go to proper position (use arm_joints order)
-    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
+    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
@@ -176,8 +161,8 @@ def create_movegoals():
     cycle_times = [ 1.0, 2.0 ]
     """
     # default values
-    cycle_goals = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                   [-3.0, -1.0, 0.3, 0.0, 0.0, 0.0, ]]
+    cycle_goals =  [[-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
     cycle_times = [ 1.0, 1.0 ]
 
     # calculate complete session:
@@ -251,7 +236,7 @@ def start_experiment():
     # stop collecting and process the data
     coll_running = False
 
-    np.set_printoptions(threshold=np.nan, precision=2)
+    #    np.set_printoptions(threshold=np.nan, precision=2)
 
     # waarom werkt dit, terwijl het geen global is in main????
     print ('cnt\'s: ', mcnt, bcnt, spcnt, ssbcnt)

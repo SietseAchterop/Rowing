@@ -104,7 +104,7 @@
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
   </joint>
 
-  <joint name="sliding" type="fixed">
+  <joint name="sliding" type="prismatic">
     <parent link="skiff"/>
     <child link="seat"/>
     <origin rpy="0 0 0" xyz="-3.49514 0.0 0.2"/>
@@ -209,7 +209,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="LShoulderTheta" type="revolute" >
+  <joint name="shoulder_theta_l" type="revolute" >
     <parent link="left_shoulder_psi_link"/>
     <child link="arm_l_upper"/>
     <origin rpy="0 0.655 0" xyz="0 0.0 0.0"/>
@@ -261,7 +261,7 @@
       </geometry>
     </visual>
   </link>
-  <joint name="RShoulderTheta" type="revolute" >
+  <joint name="shoulder_theta_r" type="revolute" >
     <parent link="right_shoulder_psi_link"/>
     <child link="arm_r_upper"/>
     <origin rpy="${pi} -0.62 0" xyz="0 0.0 0.0"/>
@@ -271,7 +271,7 @@
   </joint>
 
   <!-- 2D joint left elbow -->
-  <joint name="LElbowTheta" type="revolute" >
+  <joint name="elbow_theta_l" type="revolute" >
     <parent link="arm_l_upper"/>
     <child link="left_elbow_psi_link"/>
     <origin rpy="0.0 -1.90  0.0" xyz="-0.35 0.0  0.0"/>
@@ -396,7 +396,7 @@
   </joint>
 
   <!-- 2D joint right elbow -->
-  <joint name="RElbowTheta" type="revolute" >
+  <joint name="elbow_theta_r" type="revolute" >
     <parent link="arm_r_upper"/>
     <child link="right_elbow_psi_link"/>
     <origin rpy="0.0 -${pi+1.9 }  0.0" xyz="0.35 0.0  0.0"/>
@@ -1138,7 +1138,7 @@
 
   <transmission name="tran13">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="LShoulderTheta">
+    <joint name="shoulder_theta_l">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor13">
@@ -1148,10 +1148,133 @@
 
   <transmission name="tran14">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_psi_r">
+    <joint name="elbow_theta_l">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor14">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran15">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_left">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor15">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran16">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="handle_left_j1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor16">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran17">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="handle_left_j2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor17">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran18">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="handle_left_j3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor18">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  
+
+
+  <transmission name="tran19">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_r">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor19">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran20">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_psi_r">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor20">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran21">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_theta_r">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor21">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran22">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_theta_r">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor22">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran23">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_right">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor23">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran24">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="handle_right_j1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor24">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran25">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="handle_right_j2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor25">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran26">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="handle_right_j3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor26">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
