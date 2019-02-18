@@ -55,25 +55,25 @@ boot:
       handle_right_j2        : {trajectory: 0.01, goal: 0.01}
       handle_right_j3        : {trajectory: 0.01, goal: 0.01}
     gains:
-      knee                   :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      hip2                   :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      back_lh                :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_l             :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_psi_l         :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_theta_l       :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      elbow_theta_l          :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      elbow_left             :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      handle_left_j1         :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      handle_left_j2         :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      handle_left_j3         :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_r             :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_psi_r         :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_theta_r       :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      elbow_theta_r          :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      elbow_right            :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      handle_right_j1        :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      handle_right_j2        :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      handle_right_j3        :  {p: 10.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      knee                   :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      hip2                   :  {p: 500.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      back_lh                :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_l             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_psi_l         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_theta_l       :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_theta_l          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_left             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_left_j1         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_left_j2         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_left_j3         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_r             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_psi_r         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_theta_r       :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_theta_r          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_right            :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_right_j1        :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_right_j2        :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_right_j3        :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
 
       state_publish_rate:  50       # was 50. stabieler?
       stop_trajectory_duration: 0.0

@@ -8,7 +8,7 @@
   <parent link="world"/>
   <child link="back_low"/>
   <origin rpy="0  -${pi/2+0.34} 0.0" xyz="0.0 0.0   0.1"/>
-  <dynamics damping="0.005" />
+  <dynamics damping="0.5" friction="0.1"/>
   <axis xyz="0 1 0"/>
   <limit effort="100.0" lower="-1.0" upper="1.0" velocity="1.0"/>
 </joint>
@@ -75,7 +75,7 @@
   <child link="left_shoulder_xx_link" />
   <origin rpy="0.0 0.0 0.13" xyz="0.0 0.2   0.0"/>
   <axis xyz="0 0 1" />
-  <dynamics damping="0.5" />
+  <dynamics damping="0.5"  friction="0.1"/>
   <limit effort="100.0" lower="-1.5" upper="0.5" velocity="1.0"/>
 </joint>
 <link name="left_shoulder_xx_link">
@@ -114,7 +114,7 @@
   <child link="arm_l_upper"/>
   <origin rpy="0 0.68 0" xyz="0 0.0 0.0"/>
   <axis xyz="0 1 0" />
-  <dynamics damping="0.5" />
+  <dynamics damping="0.5" friction="0.1" />
   <limit effort="100.0" lower="-2.0" upper="1.0" velocity="1.0"/> 
 </joint>
 
