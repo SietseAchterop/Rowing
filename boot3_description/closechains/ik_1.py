@@ -3,7 +3,7 @@
 from trac_ik_python.trac_ik import IK
 
 ik_solver = IK("skiff",
-                              "dummy_link_1", epsilon=1e-07)
+                              "Ldummy_link_1", epsilon=1e-05)
 
 seed_state = [0.0] * ik_solver.number_of_joints
 
@@ -14,5 +14,7 @@ print(ik_solver.get_ik(seed_state,
    dummy link 2
 """
 print(ik_solver.get_ik(seed_state,
-                                 -3.577, 0.174, 0.526, 
-                                 0.358, 0.933, 0.033, 0.037))
+                       -3.582, 0.179, 0.396,
+                       0.362, 0.931, 0.032, 0.038 ))
+#                                 -3.577, 0.174, 0.396, 
+#                                 0.358, 0.933, 0.033, 0.037))

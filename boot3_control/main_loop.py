@@ -95,7 +95,7 @@ def jscallback(data):
             bstarttime = timestamp
         if ((timestamp-bstarttime) % 20) != 0:
             # gebeurd vrijwel nooit
-            print ('timestamp error', timestamp, timestamp-bstarttime)
+            print ('timestamp error jscallback', timestamp, timestamp-bstarttime)
         # port starboard rowlock
         p_knee = jsts.position[4]
         hip2 = jsts.position[3]
@@ -128,7 +128,7 @@ def spcb(data):
             spstarttime = timestamp
         if ((timestamp-spstarttime) % 20) != 0:
             # gebeurd vrijwel nooit
-            print ('timestamp error', timestamp, timestamp-spstarttime)
+            print ('timestamp error spcb', timestamp, timestamp-spstarttime)
         spdata[spcnt] = [timestamp-spstarttime, spd.wrench.force.x, spd.wrench.force.y, spd.wrench.force.z, spd.wrench.torque.x, spd.wrench.torque.y, spd.wrench.torque.z]
         spcnt +=1
 
@@ -142,7 +142,7 @@ def ssbcb(data):
             ssbstarttime = timestamp
         if ((timestamp-ssbstarttime) % 20) != 0:
             # gebeurd vrijwel nooit
-            print ('timestamp error', timestamp, timestamp-ssbstarttime)
+            print ('timestamp error ssbcb', timestamp, timestamp-ssbstarttime)
         ssbdata[ssbcnt] = [timestamp-ssbstarttime, ssbd.wrench.force.x, ssbd.wrench.force.y, ssbd.wrench.force.z, ssbd.wrench.torque.x, ssbd.wrench.torque.y, ssbd.wrench.torque.z]
         ssbcnt +=1
 
@@ -163,8 +163,9 @@ def create_movegoals():
     """
     # default values
     cycle_goals =  [ [0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0],
-                    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
-    cycle_times = [ 1.0, 1.0 ]
+                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                     [0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]]
+    cycle_times = [ 1.0, 1.0,2.0 ]
 
     # calculate complete session:
     for i in range(repeat):
@@ -361,8 +362,10 @@ if __name__ == '__main__':
         elif next.split()[0] == 'r':
             stop_controllers()
             unload_controllers()
+            world_pause(True)
             reload_model()
             load_controllers()
+            world_pause(False)
         elif next.split()[0] == 'q':
             break
         elif next.split()[0] == 'h':

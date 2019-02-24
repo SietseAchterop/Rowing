@@ -2,6 +2,9 @@
 Inverse kinematics met trac_ik gebruiken om de kinematic loops te sluiten.
 =====
 
+rosrun tf tf_echo world Ldummy_link_2
+
+
 zet dummy_link_1 op positie van dummy_link_2
 zie ik_1.py
  let op: sliding tijdelijk vast zetten!
