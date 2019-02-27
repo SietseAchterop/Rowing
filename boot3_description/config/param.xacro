@@ -3,6 +3,7 @@
 
 <!--
     Describes parameters of the boot model
+        template version
 -->
 
 <!-- boat  -->
@@ -18,5 +19,9 @@
 <!--
  lengths of links, musle power?
 -->
+
+<!-- Initial position of links that can change-->
+     
+<xacro:property name="starboard_rowlock" value="-0.57" />
 
 </robot>
