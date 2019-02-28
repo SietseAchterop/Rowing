@@ -82,6 +82,7 @@ if res != None:
     print(res)
 
     print("En nu dit wegschrijven in param file")
+    # parse xml, pretty print xml
 
 else:
     print("No result from trac_ik.")
