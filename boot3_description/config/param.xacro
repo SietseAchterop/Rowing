@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<robot 	xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <!--
     Describes parameters of the boot model
@@ -7,46 +6,49 @@
 -->
 
 <!-- boat  -->
-<xacro:property name="span" value="1.6" />
+<xacro:property name="span" value="1.6"/>
 
 <!-- oar -->
-<xacro:property name="inner" value="0.87" />
-<xacro:property name="outer" value="2.00" />
+<xacro:property name="inner" value="0.87"/>
+<xacro:property name="outer" value="2.00"/>
 
 <!--  rower -->
-<xacro:property name="weight" value="70" />
-<xacro:property name="lenght" value="1.80" />
+<xacro:property name="weight" value="70"/>
+<xacro:property name="lenght" value="1.80"/>
 <!--
  lengths of links, musle power?
 -->
 
 <!-- Initial position of links that might change-->
      
-<xacro:property name="starboard_rowlock" value="-0.57" />
-<xacro:property name="port_rowlock" value="0.61" />
-<xacro:property name="starboard_oar" value="-0.13" />
-<xacro:property name="port_oar" value="0.13" />
-<xacro:property name="hip2" value="0.329" />
-<xacro:property name="back_lh" value="0.011" />
+<xacro:property name="starboard_rowlock" value="-0.4939"/>
+<xacro:property name="port_rowlock" value="0.61"/>
+<xacro:property name="starboard_oar" value="-0.1459"/>
+<xacro:property name="port_oar" value="0.13"/>
+<xacro:property name="hip2" value="0.329"/>
+<xacro:property name="back_lh" value="0.011"/>
 
-<xacro:property name="handle_left_j1" value="0.13" />
-<xacro:property name="handle_left_j2" value="0.0" />
-<xacro:property name="handle_left_j3" value="0.04" />
-<xacro:property name="elbow_left" value="-2.0" />
-<xacro:property name="elbow_theta_l" value="0.0" />
-<xacro:property name="elbow_xx_l" value="1.0" />
-<xacro:property name="shoulder_theta_l" value="0.37" />
-<xacro:property name="shoulder_psi_l" value="0.0" />
-<xacro:property name="shoulder_l" value="0.16" />
+<xacro:property name="handle_left_j1" value="0.1427"/>
+<xacro:property name="handle_left_j2" value="0.0808"/>
+<xacro:property name="handle_left_j3" value="-0.0491"/>
+<xacro:property name="elbow_left" value="-1.9209"/>
+<xacro:property name="elbow_theta_l" value="-0.0007"/>
+<xacro:property name="elbow_xx_l" value="0.9758"/>
+<xacro:property name="shoulder_theta_l" value="0.5443"/>
+<xacro:property name="shoulder_psi_l" value="-0.0209"/>
+<xacro:property name="shoulder_l" value="0.1487"/>
 
-<xacro:property name="handle_right_j1" value="-0.07" />
-<xacro:property name="handle_right_j2" value="-0.08" />
-<xacro:property name="handle_right_j3" value="0.1" />
-<xacro:property name="elbow_right" value="1.8" />
-<xacro:property name="elbow_theta_r" value="-0.02" />
-<xacro:property name="elbow_xx_r" value="0.7" />
-<xacro:property name="shoulder_theta_r" value="-0.62" />
-<xacro:property name="shoulder_psi_r" value="3.42" />
-<xacro:property name="shoulder_r" value="0.0" />
+<xacro:property name="handle_right_j1" value="-0.07"/>
+<xacro:property name="handle_right_j2" value="-0.08"/>
+<xacro:property name="handle_right_j3" value="0.1"/>
+<xacro:property name="elbow_right" value="1.8"/>
+<xacro:property name="elbow_theta_r" value="-0.02"/>
+<xacro:property name="elbow_xx_r" value="0.7"/>
+<xacro:property name="shoulder_theta_r" value="-0.62"/>
+<xacro:property name="shoulder_psi_r" value="3.42"/>
+<xacro:property name="shoulder_r" value="0.0"/>
+
+<!-- Some joints have to change when creating the kinematic loops -->
+<xacro:property name="sliding_type" value="prismatic"/>
 
 </robot>
