@@ -1,8 +1,9 @@
 <launch>
 
-  <param name="robot_description"
-    command="xacro '$(find boot3_description)/urdf/boot.xacro' " />
+  <arg name="reconnectloops" default="false" /> <!-- true to set some joints to fixed for reconfiguring -->
 
+  <param name="robot_description"
+    command="xacro '$(find boot3_description)/urdf/boot.xacro'  reconnectloops:=$(arg reconnectloops)" />
 
 
   <!-- send fake joint values -->

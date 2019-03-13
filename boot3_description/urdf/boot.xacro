@@ -2,8 +2,24 @@
 
 <robot name="myboat"  xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Constants for robot dimensions -->
-
+  <!-- Set some joints to fixed when recreating the kinematic loops again -->
+  <xacro:arg name="reconnectloops" default="true" />
+  <xacro:if value="$(arg reconnectloops)">
+    <xacro:property name="sliding_type" value="fixed" />
+    <xacro:property name="hip2_type" value="fixed" />
+    <xacro:property name="starboard_rowlock_type" value="fixed" />
+    <xacro:property name="port_rowlock_type" value="fixed" />
+    <xacro:property name="starboard_oar_type" value="fixed" />
+    <xacro:property name="port_oar_type" value="fixed" />
+  </xacro:if>
+  <xacro:unless value="$(arg reconnectloops)">
+    <xacro:property name="sliding_type" value="prismatic" />
+    <xacro:property name="hip2_type" value="revolute" />
+    <xacro:property name="starboard_rowlock_type" value="revolute" />
+    <xacro:property name="port_rowlock_type" value="revolute" />
+    <xacro:property name="starboard_oar_type" value="revolute" />
+    <xacro:property name="port_oar_type" value="revolute" />
+  </xacro:unless>
 
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
   <xacro:include filename="$(find boot3_description)/urdf/boot.gazebo" />
@@ -13,14 +29,6 @@
   <!-- parameters that can be configured -->
   <xacro:include filename="$(find boot3_description)/config/param.xacro" />
 
-  <!-- hoe vanuit launch file te kiezen?  -->
-  <xacro:property name="reconnectloops" value='yes'/>
-  <xacro:if value="${reconnectloops == 'yes'}">
-    <!-- Set some joints to fixed when recreating the kinematic loops again -->
-    <xacro:property name="sliding_type" value="fixed" />
-  </xacro:if>
-
-  
   <joint name="prism" type="prismatic">
     <parent link="world"/>
     <child link="l1"/>
@@ -48,7 +56,7 @@
     <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_rowlock" type="revolute">
+  <joint name="starboard_rowlock" type="${starboard_rowlock_type}">
     <parent link="skiff"/>
     <child link="starboard_rowlock_l"/>
     <origin rpy="0.0  0.0 ${starboard_rowlock}" xyz="-3 ${span/2} 0.27"/>
@@ -57,7 +65,7 @@
     <limit effort="101.0" lower="-0.4" upper="1.4" velocity="1.0"/>
   </joint>
 
-  <joint name="port_rowlock" type="revolute">
+  <joint name="port_rowlock" type="${port_rowlock_type}">
     <parent link="skiff"/>
     <child link="port_rowlock_l"/>
     <origin rpy="0.0  0.0 ${port_rowlock}" xyz="-3 -${span/2} 0.25"/>
@@ -66,7 +74,7 @@
     <limit effort="101.0" lower="-1.4" upper="1.4" velocity="1.0"/>
   </joint>
 
-  <joint name="starboard_oar" type="revolute">
+  <joint name="starboard_oar" type="${starboard_oar_type}">
     <parent link="starboard_rowlock_l"/>
     <child link="starboard_oar_l"/>
     <origin rpy="0.0  ${pi/2+starboard_oar} -${pi/2}" xyz="0.0 0.0   0.02"/>
@@ -75,13 +83,13 @@
     <limit effort="101.0" lower="-0.4" upper="0.1" velocity="1.0"/>
   </joint>
 
-  <joint name="port_oar" type="revolute">
+  <joint name="port_oar" type="${port_oar_type}">
     <parent link="port_rowlock_l"/>
     <child link="port_oar_l"/>
     <origin rpy="0.0  ${pi/2+port_oar} -${pi/2}" xyz="0.0 0.0   0.02"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
-    <limit effort="101.0" lower="0.0" upper="0.4" velocity="1.0"/>
+    <limit effort="101.0" lower="-0.1" upper="0.4" velocity="1.0"/>
   </joint>
 
   <joint name="starboard_blade" type="revolute">
@@ -148,7 +156,7 @@
     <limit effort="101.0" lower="-1.6" upper="0" velocity="1.0"/>
   </joint>
 
-  <joint name="hip2" type="revolute">   <!-- tijdelijk -->
+  <joint name="hip2" type="${hip2_type}"> 
     <parent link="seat"/>
     <child link="back_low"/>
     <origin rpy="0  -${pi/2+hip2} 0.0" xyz="0.0 0.0   0.1"/>
@@ -157,7 +165,7 @@
     <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
 
-  <joint name="back_lh" type="revolute">  <!-- tijdelijk -->
+  <joint name="back_lh" type="revolute">  
     <parent link="back_low"/>
     <child link="back_high"/>
     <origin rpy="0  ${back_lh} 0.0" xyz="0.25 0.0   0.0"/>
@@ -388,7 +396,7 @@
   <joint name="handle_right_j1" type="revolute">
     <parent link="port_oar_l"/>
     <child link="handle_right_l1"/>
-    <origin rpy="${handle_right_j1} 0 ${pi/2}" xyz="0 0.0 -${inner}"/>
+    <origin rpy="${-1*handle_right_j1} 0 ${pi/2}" xyz="0 0.0 -${inner}"/>
     <dynamics damping="0.005" />
     <axis xyz="-1 0 0"/>
     <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
@@ -430,9 +438,9 @@
   <joint name="handle_right_j3" type="revolute">
     <parent link="handle_right_l2"/>
     <child link="arm_r_lower"/>
-    <origin rpy="${pi} ${handle_right_j3} 0" xyz="0 0.0 0.0"/>
+    <origin rpy="0 ${-1*handle_right_j3} 0" xyz="0 0.0 0.0"/>
     <dynamics damping="0.005" />
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 -1 0"/>
     <limit effort="101.0" lower="-1" upper="1" velocity="1.0"/>
   </joint>
 
@@ -441,7 +449,7 @@
   <joint name="elbow_right" type="revolute">
     <parent link="arm_r_lower"/>
     <child link="right_elbow_psi_link"/>
-    <origin rpy="${pi} 0 ${pi+elbow_right}" xyz="-0.4 0.0 0.0"/>
+    <origin rpy="0 0 ${elbow_right}" xyz="-0.4 0.0 0.0"/>
     <dynamics damping="0.5" />
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
@@ -483,8 +491,8 @@
   <joint name="elbow_xx_r" type="revolute" >
     <parent link="right_elbow_theta_link"/>
     <child link="arm_r_upper"/>
-    <origin rpy="${elbow_xx_r} 0.0  0.0" xyz="0.0 0.0  0.0"/>
-    <axis xyz="1 0 0" />
+    <origin rpy="${-1*elbow_xx_r} 0.0  0.0" xyz="0.0 0.0  0.0"/>
+    <axis xyz="-1 0 0" />
     <dynamics damping="0.5" />
     <limit effort="101.0" lower="-1.0" upper="2.0" velocity="1.0"/>
   </joint>
@@ -494,7 +502,7 @@
   <joint name="shoulder_theta_r" type="revolute" >
     <parent link="arm_r_upper"/>
     <child link="right_shoulder_psi_link"/>
-    <origin rpy="${pi} ${shoulder_theta_r} 0" xyz="0.35 0.0 0.0"/>
+    <origin rpy="${pi} ${-1*shoulder_theta_r} 0" xyz="0.35 0.0 0.0"/>
     <axis xyz="0 -1 0" />
     <dynamics damping="0.5" />
     <limit effort="101.0" lower="-1.5" upper="1.0" velocity="1.0"/>
@@ -516,7 +524,7 @@
     <parent link="right_shoulder_psi_link" />
     <child link="right_shoulder_xx_link" />
     <origin rpy="${shoulder_psi_r} 0.0 0.0" xyz="0.0 0.0   0.0"/>
-    <axis xyz="-1 0 0" />
+    <axis xyz="1 0 0" />
     <dynamics damping="0.005" />
     <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/>
   </joint>
@@ -536,15 +544,15 @@
   <joint name="shoulder_r" type="revolute" >
     <parent link="right_shoulder_xx_link" />
     <child link="shoulder_right" />
-    <origin rpy="0.0 ${pi}  ${shoulder_r}" xyz="0.0 -0.0   0.0"/>
-    <axis xyz="0 0 -1" />
+    <origin rpy="0.0 0  ${shoulder_r}" xyz="0.0 -0.0   0.0"/>
+    <axis xyz="0 0 1" />
     <dynamics damping="0.005" />
     <limit effort="101.0" lower="-1.0" upper="0.5" velocity="1.0"/>
   </joint>
   <joint name="Rdummy_2" type="fixed">
     <parent link="shoulder_right"/>
     <child link="Rdummy_link_2"/>
-    <origin rpy="${pi} -${pi/2}  0.0" xyz="0.0 -0.1 0.0"/>
+    <origin rpy="${pi} 0  0.0" xyz="0.0 -0.1 0.0"/>
     <dynamics damping="0.005" />
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>

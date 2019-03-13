@@ -17,7 +17,12 @@ Panels:
     Help Height: 70
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /RobotModel1
+        - /RobotModel1/Links1
+        - /RobotModel1/Links1/back_high1
+        - /RobotModel1/Links1/shoulder_left1
+        - /RobotModel1/Links1/shoulder_link1
       Splitter Ratio: 0.5
     Tree Height: 371
 Preferences:
@@ -94,7 +99,7 @@ Visualization Manager:
           Show Trail: false
           Value: true
         back_high:
-          Alpha: 1
+          Alpha: 0.5
           Show Axes: false
           Show Trail: false
           Value: true
@@ -209,12 +214,12 @@ Visualization Manager:
           Show Trail: false
           Value: true
         shoulder_left:
-          Alpha: 1
+          Alpha: 0.5
           Show Axes: false
           Show Trail: false
           Value: true
         shoulder_link:
-          Alpha: 1
+          Alpha: 0.5
           Show Axes: false
           Show Trail: false
           Value: true
@@ -433,25 +438,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.4033409357070923
+      Distance: 1.4008897542953491
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 4.013204097747803
-        Y: 0.12079023569822311
-        Z: 0.5134345889091492
+        X: 4.0521111488342285
+        Y: -0.0027199022006243467
+        Z: 0.5652109980583191
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.43979740142822266
+      Pitch: -0.15520165860652924
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.41040301322937
+      Yaw: 3.27720046043396
     Saved: ~
 Window Geometry:
   Displays:
@@ -467,5 +472,5 @@ Window Geometry:
   Tool Properties:
     collapsed: false
   Width: 1572
-  X: 2148
-  Y: 0
+  X: 2262
+  Y: 24

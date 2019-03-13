@@ -37,9 +37,11 @@ number_of_joints = len(js.name)
 # origin of chain
 fromlink = "seat"
 # goal
-tolink   = "Rdummy_link_1"
+tolink   = "Ldummy_link_1"
+#tolink   = "right_elbow_psi_link"
 # for this link
-tolink2   = "Rdummy_link_2"
+tolink2   = "Ldummy_link_2"
+#tolink2   = tolink
 # both dummy_link should be on the same spot, then the shoulder is connected properly
 
 # calculate needed position
@@ -55,7 +57,7 @@ while not rospy.is_shutdown():
     print(trans)
     print(rot)
     break
-    
+
 # try to place tolink2 on position tolink
 ik_solver = IK(fromlink, tolink2, epsilon=1e-07)
 seed_state = [0.0] * ik_solver.number_of_joints
