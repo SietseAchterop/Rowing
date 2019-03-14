@@ -3,7 +3,7 @@
 <robot name="myboat"  xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Set some joints to fixed when recreating the kinematic loops again -->
-  <xacro:arg name="reconnectloops" default="true" />
+  <xacro:arg name="reconnectloops" default="false" />
   <xacro:if value="$(arg reconnectloops)">
     <xacro:property name="sliding_type" value="fixed" />
     <xacro:property name="hip2_type" value="fixed" />
