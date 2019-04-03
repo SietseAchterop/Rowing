@@ -17,9 +17,10 @@
       <visual name='back_low_visual'>
         <pose frame=''>0.15 0 0 0 -0 0</pose>
         <geometry>
-          <box>
-            <size>0.3 0.1 0.05</size>
-          </box>
+          <mesh>
+            <scale>10.0004 10.0004 10.0004</scale>
+            <uri>model://myboot/meshes/hokuyo.dae</uri>
+          </mesh>
         </geometry>
       </visual>
       <visual name='back_low_fixed_joint_lump__back_high_visual_1'>
