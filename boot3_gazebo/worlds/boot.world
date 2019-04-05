@@ -26,7 +26,7 @@
       <real_time_update_rate>1000</real_time_update_rate>
       <ode>
 	<solver>
-	  <iters>150</iters>
+	  <iters>200</iters>
 	  <sor>1.3</sor>
 	</solver>
       </ode>

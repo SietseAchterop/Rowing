@@ -22,8 +22,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0.15 0.0   0.0"/>
       <geometry>
-        <mesh filename="model://myboot/meshes/hokuyo.dae" scale="10.0004 10.0004 10.0004"/>
-        <!--      <box size="0.3 0.1 0.05"/> -->
+        <box size="0.3 0.1 0.05"/>
       </geometry>
     </visual>
   </link>
@@ -162,5 +161,14 @@
       </geometry>
     </visual>
   </link>
+  <gazebo reference="hip2">
+    <provideFeedback>true</provideFeedback>
+  </gazebo>
+  <gazebo reference="shoulder_l">
+    <provideFeedback>true</provideFeedback>
+  </gazebo>
+  <gazebo reference="LShoulderTheta">
+    <provideFeedback>true</provideFeedback>
+  </gazebo>
 </robot>
 

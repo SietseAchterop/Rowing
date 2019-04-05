@@ -301,7 +301,7 @@
     <origin rpy="0 ${shoulder_theta_l} 0" xyz="-0.35 0.0 0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-2.0" upper="1.0" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="left_shoulder_psi_link">
     <inertial>
@@ -322,7 +322,7 @@
     <origin rpy="${shoulder_psi_l} 0.0 0.0" xyz="0.0 0.0   0.0"/>
     <axis xyz="1 0 0" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="left_shoulder_xx_link">
     <inertial>
@@ -343,7 +343,7 @@
     <origin rpy="0.0 0.0 ${shoulder_l}" xyz="0.0 0.0   0.0"/>
     <axis xyz="0 0 1" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <joint name="Ldummy_2" type="fixed">
     <parent link="shoulder_left"/>
@@ -505,7 +505,7 @@
     <origin rpy="${pi} ${-1*shoulder_theta_r} 0" xyz="0.35 0.0 0.0"/>
     <axis xyz="0 -1 0" />
     <dynamics damping="0.5" />
-    <limit effort="101.0" lower="-1.5" upper="1.0" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="right_shoulder_psi_link">
     <inertial>
@@ -526,7 +526,7 @@
     <origin rpy="${shoulder_psi_r} 0.0 0.0" xyz="0.0 0.0   0.0"/>
     <axis xyz="1 0 0" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-1.5" upper="1.5" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="right_shoulder_xx_link">
     <inertial>
@@ -547,7 +547,7 @@
     <origin rpy="0.0 0  ${shoulder_r}" xyz="0.0 -0.0   0.0"/>
     <axis xyz="0 0 1" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-1.0" upper="0.5" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <joint name="Rdummy_2" type="fixed">
     <parent link="shoulder_right"/>
@@ -936,11 +936,11 @@
   <link name="shoulder_left">
     <inertial>
       <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="0.0 -0.2 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.05 0.0"/>
       <inertia ixx="0.013" ixy="0" ixz="0" iyy="0.0004" iyz="0" izz="0.013"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0  -0.2   0.0"/>
+      <origin rpy="0 0 0" xyz="0.0  0.05   0.0"/>
       <geometry>
         <box size="0.05 0.1 0.05"/>
       </geometry>
@@ -956,11 +956,11 @@
   <link name="shoulder_right">
     <inertial>
       <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="0.0 -0.2 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0 -0.05 0.0"/>
       <inertia ixx="0.013" ixy="0" ixz="0" iyy="0.0004" iyz="0" izz="0.013"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0  -0.2   0.0"/>
+      <origin rpy="0 0 0" xyz="0.0  -0.05   0.0"/>
       <geometry>
         <box size="0.05 0.1 0.05"/>
       </geometry>

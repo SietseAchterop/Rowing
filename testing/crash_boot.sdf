@@ -1,4 +1,6 @@
 <sdf version='1.6'>
+
+
   <model name='myboat'>
     <link name='back_low'>
       <pose frame=''>0 0 0.1 3.14159 -1.2308 3.14159</pose>
@@ -17,10 +19,9 @@
       <visual name='back_low_visual'>
         <pose frame=''>0.15 0 0 0 -0 0</pose>
         <geometry>
-          <mesh>
-            <scale>10.0004 10.0004 10.0004</scale>
-            <uri>model://myboot/meshes/hokuyo.dae</uri>
-          </mesh>
+          <box>
+            <size>0.3 0.1 0.05</size>
+          </box>
         </geometry>
       </visual>
       <visual name='back_low_fixed_joint_lump__back_high_visual_1'>
@@ -59,6 +60,16 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
+      <physics>
+        <provide_feedback>1</provide_feedback>
+        <ode>
+          <provide_feedback>1</provide_feedback>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='left_shoulder_xx_link'>
       <pose frame=''>-0.200092 0.2 0.665653 -2.79032 -1.20769 2.76797</pose>
@@ -110,6 +121,16 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
+      <physics>
+        <provide_feedback>1</provide_feedback>
+        <ode>
+          <provide_feedback>1</provide_feedback>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='arm_l_upper'>
       <pose frame=''>-0.200092 0.2 0.665653 0.42859 -1.18849 -1.20039</pose>
@@ -169,6 +190,16 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
+      <physics>
+        <provide_feedback>1</provide_feedback>
+        <ode>
+          <provide_feedback>1</provide_feedback>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
   </model>
 </sdf>
