@@ -100,10 +100,13 @@
     </geometry>
   </visual>
 </link>
-<joint name="shoulder_iets" type="fixed" >
+<joint name="shoulder_iets" type="revolute" >
   <parent link="left_shoulder_xx_link" />
   <child link="left_shoulder_psi_link" />
   <origin rpy="-0.803 0.0 0.0" xyz="0.0 0.0   0.0"/>
+  <axis xyz="1 0 0" />
+  <dynamics damping="0.5" friction="0.1" />
+  <limit effort="100.0" lower="-0.5" upper="0.5" velocity="1.0"/> 
 </joint>
 <link name="left_shoulder_psi_link">
   <inertial>
@@ -208,6 +211,16 @@
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="motor3">
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="tran4">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="shoulder_iets">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor4">
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>

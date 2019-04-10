@@ -12,6 +12,7 @@ boot:
       - hip2
       - shoulder_l
       - shoulder_theta_l
+      - shoulder_iets
       
     constraints:
       goal_time: 0.5
@@ -19,11 +20,13 @@ boot:
       hip2                   : {trajectory: 0.01, goal: 0.01}
       shoulder_l             : {trajectory: 0.01, goal: 0.01}
       shoulder_theta_l       : {trajectory: 0.01, goal: 0.01}
+      shoulder_iets          : {trajectory: 0.01, goal: 0.01}
       
     gains:
       hip2                   :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_l             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_theta_l       :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_iets          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
 
 
       state_publish_rate:  50       # was 50. stabieler?
