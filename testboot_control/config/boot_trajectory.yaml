@@ -9,36 +9,22 @@ boot:
     type: effort_controllers/JointTrajectoryController
     # which joints to control:
     joints:
-      - knee
       - hip2
-      - back_lh
       - shoulder_l
-      - shoulder_psi_l
       - shoulder_theta_l
-      - elbow_theta_l
-      - elbow_left
       
     constraints:
       goal_time: 0.5
       stopped_velocity_tolerance: 0.01
-      knee                   : {trajectory: 0.01, goal: 0.01}
       hip2                   : {trajectory: 0.01, goal: 0.01}
-      back_lh                : {trajectory: 0.01, goal: 0.01}
       shoulder_l             : {trajectory: 0.01, goal: 0.01}
-      shoulder_psi_l         : {trajectory: 0.01, goal: 0.01}
       shoulder_theta_l       : {trajectory: 0.01, goal: 0.01}
-      elbow_theta_l          : {trajectory: 0.01, goal: 0.01}
-      elbow_left             : {trajectory: 0.01, goal: 0.01}
       
     gains:
-      knee                   :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      hip2                   :  {p: 500.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      back_lh                :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      hip2                   :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_l             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      shoulder_psi_l         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_theta_l       :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      elbow_theta_l          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
-      elbow_left             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+
 
       state_publish_rate:  50       # was 50. stabieler?
       stop_trajectory_duration: 0.0
