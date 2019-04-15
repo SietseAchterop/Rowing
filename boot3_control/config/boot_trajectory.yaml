@@ -16,6 +16,7 @@ boot:
       - shoulder_psi_l
       - shoulder_theta_l
       - elbow_theta_l
+      - elbow_xx_l
       - elbow_left
       
     constraints:
@@ -28,6 +29,7 @@ boot:
       shoulder_psi_l         : {trajectory: 0.01, goal: 0.01}
       shoulder_theta_l       : {trajectory: 0.01, goal: 0.01}
       elbow_theta_l          : {trajectory: 0.01, goal: 0.01}
+      elbow_xx_l             : {trajectory: 0.01, goal: 0.01}
       elbow_left             : {trajectory: 0.01, goal: 0.01}
       
     gains:
@@ -38,6 +40,7 @@ boot:
       shoulder_psi_l         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_theta_l       :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_theta_l          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_xx_l             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_left             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
 
       state_publish_rate:  50       # was 50. stabieler?
