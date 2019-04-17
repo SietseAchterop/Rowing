@@ -8,12 +8,12 @@ import rospy
 
 from lxml import etree
 
-tree = etree.parse('/home/sietse/catkin_ws/src/Rowing/boot3_description/config/param.xacro-template')
+tree = etree.parse('/home/sietse/catkin_ws/src/Rowing/boot4_description/config/param.xacro-template')
 root = tree.getroot()
 
 etree.tostring(root)
 
-spandict = root[0].attrib
+spandict = root[11].attrib
 
 print (spandict.get('name'))
 print (spandict.get('value'))
@@ -24,9 +24,8 @@ tovalue  = [ '1.0', '4', '56']
 for jnt in tochange:
     value = tovalue[tochange.index(jnt)]
     for child in root:
-        if child.attrib['name'] == jnt:
+        if child.attrib.get('name') == jnt:
             child.attrib['value'] = value
-
 
 for child in root:
     print(child.attrib)

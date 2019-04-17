@@ -37,10 +37,10 @@ help_string = """   Commands:
 
 
 # globals
-# All 19 joints to control
+# All 21 joints to control (ook de handle joints?)
 arm_joints = [
-    'knee', 'hip2', 'back_lh', 'shoulder_l', 'shoulder_psi_l', 'shoulder_theta_l', 'elbow_theta_l', 'elbow_left', 'handle_left_j1', 'handle_left_j2',
-    'handle_left_j3', 'shoulder_r', 'shoulder_psi_r', 'shoulder_theta_r', 'elbow_theta_r', 'elbow_right', 'handle_right_j1', 'handle_right_j2', 'handle_right_j3' ]
+    'knee', 'hip2', 'back_lh', 'shoulder_l', 'shoulder_psi_l', 'shoulder_theta_l', 'elbow_xx_l', 'elbow_theta_l', 'elbow_left', 'handle_left_j1', 'handle_left_j2',
+    'handle_left_j3', 'shoulder_r', 'shoulder_psi_r', 'shoulder_theta_r', 'elbow_xx_r', 'elbow_theta_r', 'elbow_right', 'handle_right_j1', 'handle_right_j2', 'handle_right_j3' ]
 tfstart = 0
 
 """

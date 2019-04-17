@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 """
+Gebruiken met
+   roslaunch boot4_description boot_rviz.launch reconnectloops:=true
+
 get joint states using joint_state_publisher
 get tf between 2 links
 calc trac_ik
@@ -20,6 +23,7 @@ from lxml import etree
 # start program
 rospy.init_node('calc_new_positions', anonymous=True)
 
+# collect some joint state data
 js = JointState()
 cbcount = 0
 def callbackjs(data):
@@ -33,15 +37,14 @@ rospy.Subscriber("joint_states", JointState, callbackjs)
 while cbcount < 2:
     pass
 number_of_joints = len(js.name)
+# we now have the needed joint state data
 
 # origin of chain
 fromlink = "seat"
-# goal
-tolink   = "Ldummy_link_1"
-#tolink   = "right_elbow_psi_link"
+# goal (connect the arm to the oar)
+tolink   = "Rdummy_link_1"
 # for this link
-tolink2   = "Ldummy_link_2"
-#tolink2   = tolink
+tolink2   = "Rdummy_link_2"
 # both dummy_link should be on the same spot, then the shoulder is connected properly
 
 # calculate needed position
@@ -57,6 +60,7 @@ while not rospy.is_shutdown():
     print(trans)
     print(rot)
     break
+# we now have the needed transformation
 
 # try to place tolink2 on position tolink
 ik_solver = IK(fromlink, tolink2, epsilon=1e-07)
@@ -65,7 +69,7 @@ res = ik_solver.get_ik(seed_state,
                        trans[0], trans[1], trans[2],
                        rot[0], rot[1], rot[2], rot[3] )
 
-
+# if succeeded...
 if res != None:
     print("Link names: ")
     print(ik_solver.link_names)
@@ -75,7 +79,7 @@ if res != None:
     print()
     print(res)
 
-    # now change param.xacro file
+    # get template file
     tree = etree.parse('/home/sietse/catkin_ws/src/Rowing/boot4_description/config/param.xacro-template')
     root = tree.getroot()
 
@@ -93,7 +97,7 @@ if res != None:
     #    print(child.attrib)
 
     # set new parameters
-    tree.write('/home/sietse/catkin_ws/src/Rowing/boot4_description/config/param.xacro')
+    #tree.write('/home/sietse/catkin_ws/src/Rowing/boot4_description/config/param.xacro')
 
 else:
     print("No result from trac_ik, nothing changed.")

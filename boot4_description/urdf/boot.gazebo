@@ -144,13 +144,13 @@
     <child>upperleg_2</child>
   </joint>
 
-  <joint name="lowerarm_left" type="fixed">
+  <joint name="handle_starboard" type="fixed">
     <pose>0.0 0.0 0 0 0 0.1</pose>
     <parent>Ldummy_link_1</parent>
     <child>Ldummy_link_2</child>
   </joint>
 
-  <joint name="lowerarm_right" type="fixed">
+  <joint name="handle_port" type="fixed">
     <pose>0.0 0.0 0 0 0 0.1</pose>
     <parent>Rdummy_link_1</parent>
     <child>Rdummy_link_2</child>

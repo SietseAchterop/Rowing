@@ -16,6 +16,7 @@ boot:
       - shoulder_l
       - shoulder_psi_l
       - shoulder_theta_l
+      - elbow_xx_l
       - elbow_theta_l
       - elbow_left
       - handle_left_j1
@@ -25,6 +26,7 @@ boot:
       - shoulder_r
       - shoulder_psi_r
       - shoulder_theta_r
+      - elbow_xx_r
       - elbow_theta_r
       - elbow_right
       - handle_right_j1
@@ -41,6 +43,7 @@ boot:
       shoulder_l             : {trajectory: 0.01, goal: 0.01}
       shoulder_psi_l         : {trajectory: 0.01, goal: 0.01}
       shoulder_theta_l       : {trajectory: 0.01, goal: 0.01}
+      elbow_xx_l             : {trajectory: 0.01, goal: 0.01}
       elbow_theta_l          : {trajectory: 0.01, goal: 0.01}
       elbow_left             : {trajectory: 0.01, goal: 0.01}
       handle_left_j1         : {trajectory: 0.01, goal: 0.01}
@@ -49,6 +52,7 @@ boot:
       shoulder_r             : {trajectory: 0.01, goal: 0.01}
       shoulder_psi_r         : {trajectory: 0.01, goal: 0.01}
       shoulder_theta_r       : {trajectory: 0.01, goal: 0.01}
+      elbow_xx_r             : {trajectory: 0.01, goal: 0.01}
       elbow_theta_r          : {trajectory: 0.01, goal: 0.01}
       elbow_right            : {trajectory: 0.01, goal: 0.01}
       handle_right_j1        : {trajectory: 0.01, goal: 0.01}
@@ -61,6 +65,7 @@ boot:
       shoulder_l             :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_psi_l         :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_theta_l       :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_xx_l             :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_theta_l          :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_left             :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       handle_left_j1         :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
@@ -69,6 +74,7 @@ boot:
       shoulder_r             :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_psi_r         :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       shoulder_theta_r       :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_xx_r             :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_theta_r          :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_right            :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       handle_right_j1        :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}

@@ -9,7 +9,7 @@
 <xacro:property name="span" value="1.6"/>
 
 <!-- oar -->
-<xacro:property name="inner" value="0.87"/>
+<xacro:property name="inner" value="0.87"/>  <!-- length inclusive 0.1 meter handle -->
 <xacro:property name="outer" value="2.00"/>
 
 <!--  rower -->
