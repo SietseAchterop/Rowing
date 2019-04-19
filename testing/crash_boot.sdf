@@ -1,6 +1,4 @@
 <sdf version='1.6'>
-
-
   <model name='myboat'>
     <link name='back_low'>
       <pose frame=''>0 0 0.1 3.14159 -1.2308 3.14159</pose>
@@ -60,29 +58,19 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
-      <physics>
-        <provide_feedback>1</provide_feedback>
-        <ode>
-          <provide_feedback>1</provide_feedback>
-          <limit>
-            <cfm>0</cfm>
-            <erp>0.2</erp>
-          </limit>
-        </ode>
-      </physics>
     </joint>
     <link name='left_shoulder_xx_link'>
       <pose frame=''>-0.200092 0.2 0.665653 -2.79032 -1.20769 2.76797</pose>
       <inertial>
         <pose frame=''>0 0 0 0 -0 0</pose>
-        <mass>0.02</mass>
+        <mass>0.11</mass>
         <inertia>
-          <ixx>3.34e-07</ixx>
+          <ixx>1.837e-06</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>3.34e-07</iyy>
+          <iyy>1.837e-06</iyy>
           <iyz>0</iyz>
-          <izz>3.34e-07</izz>
+          <izz>1.837e-06</izz>
         </inertia>
       </inertial>
       <visual name='left_shoulder_xx_link_visual'>
@@ -108,7 +96,7 @@
       <axis>
         <xyz>-0.942755 0 -0.333487</xyz>
         <limit>
-          <lower>-1.5</lower>
+          <lower>-0.5</lower>
           <upper>0.5</upper>
           <effort>100</effort>
           <velocity>1</velocity>
@@ -121,16 +109,6 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
-      <physics>
-        <provide_feedback>1</provide_feedback>
-        <ode>
-          <provide_feedback>1</provide_feedback>
-          <limit>
-            <cfm>0</cfm>
-            <erp>0.2</erp>
-          </limit>
-        </ode>
-      </physics>
     </joint>
     <link name='arm_l_upper'>
       <pose frame=''>-0.200092 0.2 0.665653 0.42859 -1.18849 -1.20039</pose>
@@ -177,8 +155,8 @@
       <axis>
         <xyz>0.708285 0.688691 0.155042</xyz>
         <limit>
-          <lower>-2</lower>
-          <upper>1</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
           <effort>100</effort>
           <velocity>1</velocity>
         </limit>
@@ -190,16 +168,6 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
-      <physics>
-        <provide_feedback>1</provide_feedback>
-        <ode>
-          <provide_feedback>1</provide_feedback>
-          <limit>
-            <cfm>0</cfm>
-            <erp>0.2</erp>
-          </limit>
-        </ode>
-      </physics>
     </joint>
   </model>
 </sdf>

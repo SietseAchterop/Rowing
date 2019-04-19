@@ -96,9 +96,9 @@ def jscallback(data):
         if ((timestamp-bstarttime) % 20) != 0:
             # gebeurd vrijwel nooit
             print ('timestamp error jscallback', timestamp, timestamp-bstarttime)
-        # port starboard rowlock
-        p_knee = jsts.position[4]
-        hip2 = jsts.position[3]
+        # collect needed data. directly use indices for efficiency
+        p_knee = jsts.position[15]
+        hip2 = jsts.position[14]
         e_port_rowlock = 0#jsts.effort[2]
         e_starboard_rowlock = 0#jsts.effort[5]
         #print ('position  %d   %1.2f %1.2f' % (timestamp, p_knee, hip2))
@@ -151,20 +151,20 @@ def ssbcb(data):
 def create_movegoals():
     global repeat
     # Initially go to proper position (use arm_joints order)
-    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
+    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
     time_goals  = [ 1.0]
 
     # describe a stroke cycle
     """
-    einde haal:  [0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]
+    einde haal:  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]
     begin haal:
     inzet:
-    uitzet:      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    uitzet:      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     """
     # default values
-    cycle_goals =  [ [0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0],
-                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                     [0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]]
+    cycle_goals =  [ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0],
+                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]]
     cycle_times = [ 1.0, 1.0,2.0 ]
 
     # calculate complete session:
@@ -217,7 +217,6 @@ def start_experiment():
 
     # resize data
     tfstart = int(math.ceil(sum(time_goals)))
-    # Send the trajectory to the arm action server
     rospy.loginfo('Start moving the boat, will take %0.1f seconds.' % tfstart)
     # currently 1 millisecond steps
     mdata   = np.resize(bdata, (tfstart*4000 + 12000, 3))
@@ -291,19 +290,19 @@ def list_controllers():
     os.system("rosservice call /boot/controller_manager/list_controllers")
 
 def load_controllers():
-    os.system("rosservice call /boot/controller_manager/load_controller /boot/joint_state_controller")
-    os.system("rosservice call /boot/controller_manager/load_controller /boot/joint_trajectory_controller")
+    os.system("rosservice call /boot/controller_manager/load_controller joint_state_controller")
+    os.system("rosservice call /boot/controller_manager/load_controller joint_trajectory_controller")
     # wachten tot de topics weer lopen lijkt nodig.... of buffer groter maken
 
 def stop_controllers():
-    os.system("rosservice call /boot/controller_manager/switch_controller \"{stop_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], start_controllers: [], strictness: 2}\"")
+    os.system("rosservice call /boot/controller_manager/switch_controller \"{stop_controllers: ['joint_state_controller', 'joint_trajectory_controller'], start_controllers: [], strictness: 2}\"")
 
 def start_controllers():
-    os.system("rosservice call /boot/controller_manager/switch_controller \"{start_controllers: ['/boot/joint_state_controller', '/boot/joint_trajectory_controller'], stop_controllers: [], strictness: 2}\" ")
+    os.system("rosservice call /boot/controller_manager/switch_controller \"{start_controllers: ['joint_state_controller', 'joint_trajectory_controller'], stop_controllers: [], strictness: 2}\" ")
 
 def unload_controllers():
-    os.system("rosservice call /boot/controller_manager/unload_controller /boot/joint_state_controller")
-    os.system("rosservice call /boot/controller_manager/unload_controller /boot/joint_trajectory_controller")
+    os.system("rosservice call /boot/controller_manager/unload_controller joint_state_controller")
+    os.system("rosservice call /boot/controller_manager/unload_controller joint_trajectory_controller")
 
 
 def reload_model():
@@ -330,15 +329,14 @@ if __name__ == '__main__':
     reset  = rospy.get_param('~reset', False)
     repeat = rospy.get_param('~repeat', 1)
 
-    # make sure  gazebo is running with model included
+    print("Make sure the model is started with 'roslaunch boot_gazebo control_world.launch' ")
     world_pause(False)
     #    we could start gazebo from here...
     load_controllers()
 
     # Connect to the trajectory action server
     #rospy.loginfo('Waiting for boot trajectory controller...')
-    arm_client = actionlib.SimpleActionClient('boot/joint_trajectory_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
-
+    arm_client = actionlib.SimpleActionClient('/boot/joint_trajectory_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
 
     # subscribe to ...
     rospy.Subscriber("/boot/joint_states", JointState, jscallback)

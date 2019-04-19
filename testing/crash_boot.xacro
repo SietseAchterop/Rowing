@@ -80,9 +80,9 @@
 </joint>
 <link name="left_shoulder_xx_link">
   <inertial>
-    <mass value="0.01"/>
+    <mass value="0.1"/>
     <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-    <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+    <inertia ixx="0.00000167" ixy="0" ixz="0" iyy="0.00000167" iyz="0" izz="0.00000167"/> 
   </inertial>
   <visual>
     <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>

@@ -20,10 +20,10 @@ arm_joints = [
     'knee', 'hip1', 'hip2', 'back_lh', 'shoulder_l', 'shoulder_psi_l', 'shoulder_theta_l', 'elbow_xx_l', 'elbow_theta_l', 'elbow_left', 'handle_left_j1', 'handle_left_j2',
     'handle_left_j3', 'shoulder_r', 'shoulder_psi_r', 'shoulder_theta_r', 'elbow_xx_r', 'elbow_theta_r', 'elbow_right', 'handle_right_j1', 'handle_right_j2', 'handle_right_j3' ]
 """
-voor inzet  0
-na inzet    1
-eind haal   2
-na uitzet   3
+na uitzet   0
+voor inzet  1
+na inzet    2
+eind haal   3
 """
 pos_joints = [
     [ 0,     0,      0,      0,         0,           0,                0,                  0,               0,            0,            0,                 0,

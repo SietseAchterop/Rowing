@@ -58,6 +58,7 @@ boot:
       handle_right_j1        : {trajectory: 0.01, goal: 0.01}
       handle_right_j2        : {trajectory: 0.01, goal: 0.01}
       handle_right_j3        : {trajectory: 0.01, goal: 0.01}
+
     gains:
       knee                   :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       hip2                   :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}

@@ -23,8 +23,10 @@
      
 <xacro:property name="starboard_rowlock" value="-0.4939"/>
 <xacro:property name="port_rowlock" value="0.4939"/>
-<xacro:property name="starboard_oar" value="-0.1458"/>
-<xacro:property name="port_oar" value="0.1359"/>
+<xacro:property name="starboard_oar" value="-0.1258"/>
+<xacro:property name="port_oar" value="0.1159"/>
+<xacro:property name="starboard_blade" value="0.02"/>
+<xacro:property name="port_blade" value="0.0"/>
 <xacro:property name="hip2" value="-0.329"/>
 <xacro:property name="back_lh" value="0.0110"/>
 

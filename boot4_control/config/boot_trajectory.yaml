@@ -18,7 +18,22 @@ boot:
       - elbow_xx_l
       - elbow_theta_l
       - elbow_left
-      
+      - handle_left_j1
+      - handle_left_j2
+      - handle_left_j3
+      - shoulder_r
+      - shoulder_psi_r
+      - shoulder_theta_r
+      - elbow_xx_r
+      - elbow_theta_r
+      - elbow_right
+      - handle_right_j1
+      - handle_right_j2
+      - handle_right_j3
+
+      - starboard_blade
+      - port_blade
+    
     constraints:
       goal_time: 0.5
       stopped_velocity_tolerance: 0.01
@@ -31,6 +46,21 @@ boot:
       elbow_xx_l             : {trajectory: 0.01, goal: 0.01}
       elbow_theta_l          : {trajectory: 0.01, goal: 0.01}
       elbow_left             : {trajectory: 0.01, goal: 0.01}
+      handle_left_j1         : {trajectory: 0.01, goal: 0.01}
+      handle_left_j2         : {trajectory: 0.01, goal: 0.01}
+      handle_left_j3         : {trajectory: 0.01, goal: 0.01}
+      shoulder_r             : {trajectory: 0.01, goal: 0.01}
+      shoulder_psi_r         : {trajectory: 0.01, goal: 0.01}
+      shoulder_theta_r       : {trajectory: 0.01, goal: 0.01}
+      elbow_xx_r             : {trajectory: 0.01, goal: 0.01}
+      elbow_theta_r          : {trajectory: 0.01, goal: 0.01}
+      elbow_right            : {trajectory: 0.01, goal: 0.01}
+      handle_right_j1        : {trajectory: 0.01, goal: 0.01}
+      handle_right_j2        : {trajectory: 0.01, goal: 0.01}
+      handle_right_j3        : {trajectory: 0.01, goal: 0.01}
+
+      starboard_blade        : {trajectory: 0.01, goal: 0.01}
+      port_blade             : {trajectory: 0.01, goal: 0.01}
       
     gains:
       knee                   :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
@@ -42,7 +72,22 @@ boot:
       elbow_xx_l             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_theta_l          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
       elbow_left             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_left_j1         :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_left_j2         :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_left_j3         :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_r             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_psi_r         :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      shoulder_theta_r       :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_xx_r             :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_theta_r          :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      elbow_right            :  {p: 100.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_right_j1        :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_right_j2        :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      handle_right_j3        :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
 
+      starboard_blade        :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      port_blade             :  {p: 12.0, d: 1.0, i: 0.0, i_clamp: 0.0}
+      
       state_publish_rate:  50       # was 50. stabieler?
       stop_trajectory_duration: 0.0
 

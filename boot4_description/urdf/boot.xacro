@@ -97,7 +97,7 @@
   <joint name="starboard_blade" type="revolute">
     <parent link="starboard_oar_l"/>
     <child link="starboard_blade_l"/>
-    <origin rpy="0 0  0.0" xyz="0.0 0.0   -${outer}"/>
+    <origin rpy="0  ${starboard_blade}  0.0" xyz="0.0 0.0   -${outer}"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
@@ -106,7 +106,7 @@
   <joint name="port_blade" type="revolute">
     <parent link="port_oar_l"/>
     <child link="port_blade_l"/>
-    <origin rpy="0.0  0 0.0" xyz="0.0 0.0   ${outer}"/>
+    <origin rpy="0.0  ${port_blade} 0.0" xyz="0.0 0.0   ${outer}"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="-0.4" upper="0.4" velocity="1.0"/>
@@ -205,9 +205,9 @@
   </joint>
   <link name="left_shoulder_xx_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -226,9 +226,9 @@
   </joint>
   <link name="left_shoulder_psi_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -257,9 +257,9 @@
   </joint>
   <link name="left_elbow_theta_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -278,9 +278,9 @@
   </joint>
   <link name="left_elbow_psi_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -309,9 +309,9 @@
   </joint>
   <link name="handle_left_l2">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.00000167" ixy="0" ixz="0" iyy="0.00000167" iyz="0" izz="0.00000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -330,9 +330,9 @@
   </joint>
   <link name="handle_left_l1">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.00000167" ixy="0" ixz="0" iyy="0.00000167" iyz="0" izz="0.00000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -408,9 +408,9 @@
   </joint>
   <link name="right_shoulder_xx_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -429,9 +429,9 @@
   </joint>
   <link name="right_shoulder_psi_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -460,9 +460,9 @@
   </joint>
   <link name="right_elbow_theta_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -481,9 +481,9 @@
   </joint>
   <link name="right_elbow_psi_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="1.0"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -512,9 +512,9 @@
   </joint>
   <link name="handle_right_l2">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.00000167" ixy="0" ixz="0" iyy="0.00000167" iyz="0" izz="0.00000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -533,9 +533,9 @@
   </joint>
   <link name="handle_right_l1">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/> 
+      <inertia ixx="0.00000167" ixy="0" ixz="0" iyy="0.00000167" iyz="0" izz="0.00000167"/> 
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -1337,6 +1337,26 @@
   </transmission>
 
   
+  <transmission name="tran27">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_xx_l">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor27">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran28">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_xx_r">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor28">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
 
 
 

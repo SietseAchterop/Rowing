@@ -69,13 +69,13 @@
     <origin rpy="0.0 0.0 0.13" xyz="0.0 0.2   0.0"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.5" friction="0.1"/>
-    <limit effort="100.0" lower="-1.5" upper="0.5" velocity="1.0"/>
+    <limit effort="100.0" lower="-0.5" upper="0.5" velocity="1.0"/>
   </joint>
   <link name="left_shoulder_xx_link">
     <inertial>
-      <mass value="0.01"/>
+      <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
-      <inertia ixx="0.000000167" ixy="0" ixz="0" iyy="0.000000167" iyz="0" izz="0.000000167"/>
+      <inertia ixx="0.00000167" ixy="0" ixz="0" iyy="0.00000167" iyz="0" izz="0.00000167"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -108,7 +108,7 @@
     <origin rpy="0 0.68 0" xyz="0 0.0 0.0"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0.5" friction="0.1"/>
-    <limit effort="100.0" lower="-2.0" upper="1.0" velocity="1.0"/>
+    <limit effort="100.0" lower="-0.5" upper="0.5" velocity="1.0"/>
   </joint>
   <link name="arm_l_upper">
     <inertial>
@@ -161,14 +161,5 @@
       </geometry>
     </visual>
   </link>
-  <gazebo reference="hip2">
-    <provideFeedback>true</provideFeedback>
-  </gazebo>
-  <gazebo reference="shoulder_l">
-    <provideFeedback>true</provideFeedback>
-  </gazebo>
-  <gazebo reference="LShoulderTheta">
-    <provideFeedback>true</provideFeedback>
-  </gazebo>
 </robot>
 
