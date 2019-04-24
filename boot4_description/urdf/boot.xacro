@@ -64,7 +64,7 @@
     <origin rpy="0.0  0.0 ${starboard_rowlock}" xyz="-3 ${span/2} 0.27"/>
     <dynamics damping="0.005" />
     <axis xyz="0 0 1"/>
-    <limit effort="101.0" lower="-0.4" upper="1.4" velocity="1.0"/>
+    <limit effort="101.0" lower="-0.4" upper="2.0" velocity="1.0"/>
   </joint>
 
   <joint name="port_rowlock" type="${port_rowlock_type}">
@@ -73,7 +73,7 @@
     <origin rpy="0.0  0.0 ${port_rowlock}" xyz="-3 -${span/2} 0.25"/>
     <dynamics damping="0.005" />
     <axis xyz="0 0 1"/>
-    <limit effort="101.0" lower="-1.4" upper="1.4" velocity="1.0"/>
+    <limit effort="101.0" lower="-2.0" upper="0.4" velocity="1.0"/>
   </joint>
 
   <joint name="starboard_oar" type="${starboard_oar_type}">
@@ -125,7 +125,7 @@
   <joint name="sliding" type="${sliding_type}">  <!-- prismatic -->
     <parent link="skiff"/>
     <child link="seat"/>
-    <origin rpy="0 0 0" xyz="-3.49514 0.0 0.1"/>
+    <origin rpy="0 0 0" xyz="-3.44455 0.0 0.1"/>
     <dynamics damping="0.005" />
     <axis xyz="1 0 0"/>
     <limit effort="101.0" lower="-0.1" upper="0.8" velocity="0.5"/>
@@ -134,7 +134,7 @@
   <joint name="fp_ll" type="revolute">
     <parent link="footplate"/>
     <child link="lowerleg"/>
-    <origin rpy="0.0  0.1001675 0.0" xyz="0.0 0.0   0.0"/>
+    <origin rpy="0.0  0.1071 0.0" xyz="0.0 0.0   0.0"/>
     <dynamics damping="0.005" />
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="0.0" upper="${pi/2}" velocity="1.0"/>
@@ -201,7 +201,7 @@
     <origin rpy="0.0 ${-shoulder_l} 0.0" xyz="0.0 0.2   0.0"/>
     <axis xyz="0 -1 0" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+    <limit effort="101.0" lower="-1.0" upper="2.2" velocity="1.0"/>
   </joint>
   <link name="left_shoulder_xx_link">
     <inertial>
@@ -253,7 +253,7 @@
     <origin rpy=" ${pi} ${-(elbow_xx_l+pi/2)}  0.0" xyz="-0.3 0.0  0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.5" />
-    <limit effort="101.0" lower="-${pi/2}" upper="${pi/2}" velocity="1.0"/>
+    <limit effort="101.0" lower="-${pi/2+0.2}" upper="${pi/2}" velocity="1.0"/>
   </joint>
   <link name="left_elbow_theta_link">
     <inertial>
@@ -404,7 +404,7 @@
     <origin rpy="0.0 ${-shoulder_r}  0" xyz="0.0 -0.2   0.0"/>
     <axis xyz="0 -1 0" />
     <dynamics damping="0.005" />
-    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+    <limit effort="101.0" lower="-2.2" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="right_shoulder_xx_link">
     <inertial>
@@ -456,7 +456,7 @@
     <origin rpy="0 ${elbow_xx_r+pi/2}  0.0" xyz="-0.3 0.0  0.0"/>
     <axis xyz="0 1 0" />
     <dynamics damping="0.5" />
-    <limit effort="101.0" lower="-${pi/2}" upper="${pi/2}" velocity="1.0"/>
+    <limit effort="101.0" lower="-${pi/2+0.2}" upper="${pi/2}" velocity="1.0"/>
   </joint>
   <link name="right_elbow_theta_link">
     <inertial>
@@ -826,19 +826,19 @@
   <link name="lowerleg">
     <inertial>
       <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="-0.25 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="-${lowerleg/2} 0.0 0.0"/>
       <inertia ixx="0.00041" ixy="0" ixz="0" iyy="0.021" iyz="0" izz="0.021"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="-0.25 0.0   0.0"/>
+      <origin rpy="0 0 0" xyz="-${lowerleg/2} 0.0   0.0"/>
       <geometry>
-        <box size="0.5 0.05 0.05"/>
+        <box size="${lowerleg} 0.05 0.05"/>
       </geometry>
     </collision>
     <visual>
-      <origin rpy="0 0 0" xyz="-0.25 0.0   0.0"/>
+      <origin rpy="0 0 0" xyz="-${lowerleg/2} 0.0   0.0"/>
       <geometry>
-        <box size="0.5 0.05 0.05"/>
+        <box size="${lowerleg} 0.05 0.05"/>
       </geometry>
     </visual>
   </link>
@@ -848,19 +848,19 @@
   <link name="upperleg_1">
     <inertial>
       <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="-0.125 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="-${upperleg/4} 0.0 0.0"/>
       <inertia ixx="0.00041" ixy="0" ixz="0" iyy="0.0054" iyz="0" izz="0.0054"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="-0.125  0.0   0.0"/>
+      <origin rpy="0 0 0" xyz="-${upperleg/4}  0.0   0.0"/>
       <geometry>
-        <box size="0.25 0.05 0.05"/>
+        <box size="${upperleg/2} 0.05 0.05"/>
       </geometry>
     </collision>
     <visual>
-      <origin rpy="0 0 0" xyz="-0.125   0.0   0.0"/>
+      <origin rpy="0 0 0" xyz="-${upperleg/4}   0.0   0.0"/>
       <geometry>
-        <box size="0.25 0.05 0.05"/>
+        <box size="${upperleg/2} 0.05 0.05"/>
       </geometry>
     </visual>
   </link>
@@ -868,19 +868,19 @@
   <link name="upperleg_2">
     <inertial>
       <mass value="1.0"/> 
-      <origin rpy="0 0 0" xyz="0.125 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="${upperleg/4} 0.0 0.0"/>
       <inertia ixx="0.00041" ixy="0" ixz="0" iyy="0.0054" iyz="0" izz="0.0054"/>
     </inertial>
     <collision>
-      <origin rpy="0 0 0" xyz="0.125  0.0   0.0"/>
+      <origin rpy="0 0 0" xyz="${upperleg/4}  0.0   0.0"/>
       <geometry>
-        <box size="0.25 0.05 0.05"/>
+        <box size="${upperleg/2} 0.05 0.05"/>
       </geometry>
     </collision>
     <visual>
-      <origin rpy="0 0 0" xyz="0.125 0.0   0.0"/>
+      <origin rpy="0 0 0" xyz="${upperleg/4} 0.0   0.0"/>
       <geometry>
-        <box size="0.25 0.05 0.05"/>
+        <box size="${upperleg/2} 0.05 0.05"/>
       </geometry>
     </visual>
   </link>

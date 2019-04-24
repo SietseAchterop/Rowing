@@ -8,6 +8,9 @@ get joint states using joint_state_publisher
 get tf between 2 links
 calc trac_ik
 write new settings to param file
+
+deze code 2 keer uitvoeren, met Ldummies en Rdummies
+
 """
 
 from __future__ import print_function
@@ -97,7 +100,7 @@ if res != None:
     #    print(child.attrib)
 
     # set new parameters
-    #tree.write('/home/sietse/catkin_ws/src/Rowing/boot4_description/config/param.xacro')
+    tree.write('/home/sietse/catkin_ws/src/Rowing/boot4_description/config/param.xacro')
 
 else:
     print("No result from trac_ik, nothing changed.")
