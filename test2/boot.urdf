@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="myboat" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="world"/>
+
+  <joint name="shoulder" type="fixed">
+    <parent link="world"/>
+    <child link="shoulder_link"/>
+    <origin rpy="0  -1.57079632679 0.0" xyz="0.0 0.0   1.0"/>
+    <dynamics damping="0.5"/>
+    <limit effort="101.0" lower="0.0" upper="0.5" velocity="1.0"/>
+  </joint>
+
+  <link name="shoulder_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.013" ixy="0" ixz="0" iyy="0.0004" iyz="0" izz="0.013"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0  0.0   0.0"/>
+      <geometry>
+        <box size="0.05 0.4 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0   0.0"/>
+      <geometry>
+        <box size="0.05 0.4 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- 3D joint left shoulder -->
+  <joint name="shoulder_l" type="revolute">
+    <parent link="shoulder_link"/>
+    <child link="left_shoulder_xx_link"/>
+    <origin rpy="0.0 0.5674 0.0" xyz="0.0 0.2   0.0"/>
+    <axis xyz="0 -1 0"/>
+    <dynamics damping="0.005"/>
+    <limit effort="101.0" lower="-1.0" upper="2.2" velocity="1.0"/>
+  </joint>
+  <link name="left_shoulder_xx_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="shoulder_psi_l" type="revolute">
+    <parent link="left_shoulder_xx_link"/>
+    <child link="left_shoulder_psi_link"/>
+    <origin rpy="0 0.0 -0.1546" xyz="0.0 0.0   0.0"/>
+    <axis xyz="0 0 -1"/>
+    <dynamics damping="0.005"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+  </joint>
+  <link name="left_shoulder_psi_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.000167" iyz="0" izz="0.0000167"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="shoulder_theta_l" type="revolute">
+    <parent link="left_shoulder_psi_link"/>
+    <child link="arm_l_upper"/>
+    <origin rpy="-0.3847 0 0" xyz="0.0 0.0 0.0"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.005"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+  </joint>
+
+  <link name="arm_l_upper">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="-0.15 0.0 0.0"/>
+      <inertia ixx="0.00041" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.15 0.0   0.0"/>
+      <geometry>
+        <box size="0.30 0.05 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.15 0.0   0.0"/>
+      <geometry>
+        <box size="0.30 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- 3D joint left elbow -->
+  <joint name="elbow_xx_l" type="revolute">
+    <parent link="arm_l_upper"/>
+    <child link="left_elbow_theta_link"/>
+    <origin rpy=" 3.14159265359 -1.75859632679  0.0" xyz="-0.3 0.0  0.0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.5"/>
+    <limit effort="101.0" lower="-1.77079632679" upper="1.57079632679" velocity="1.0"/>
+  </joint>
+  <link name="left_elbow_theta_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="elbow_theta_l" type="revolute">
+    <parent link="left_elbow_theta_link"/>
+    <child link="left_elbow_psi_link"/>
+    <origin rpy="0 0.0  -0.1514" xyz="-0.0 0.0  0.0"/>
+    <axis xyz="0 0 -1"/>
+    <dynamics damping="0.5"/>
+    <limit effort="101.0" lower="-0.7" upper="2.0" velocity="1.0"/>
+  </joint>
+  <link name="left_elbow_psi_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      <inertia ixx="0.0000167" ixy="0" ixz="0" iyy="0.0000167" iyz="0" izz="0.0000167"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="elbow_left" type="revolute">
+    <parent link="left_elbow_psi_link"/>
+    <child link="arm_l_lower"/>
+    <origin rpy="0.2139 0 0" xyz="-0.0 0.0 0.0"/>
+    <dynamics damping="0.5"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
+  </joint>
+
+  <link name="arm_l_lower">
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="-0.175 0.0 0.0"/>
+      <inertia ixx="0.00041" ixy="0" ixz="0" iyy="0.0135" iyz="0" izz="0.0135"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.175 0.0   0.0"/>
+      <geometry>
+        <box size="0.35 0.05 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.175 0.0   0.0"/>
+      <geometry>
+        <box size="0.35 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
+

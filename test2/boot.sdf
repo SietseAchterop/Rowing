@@ -1,0 +1,313 @@
+<sdf version='1.6'>
+  <model name='myboat'>
+    <link name='shoulder_link'>
+      <pose frame=''>0 0 1 3.14159 -1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.013</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0004</iyy>
+          <iyz>0</iyz>
+          <izz>0.013</izz>
+        </inertia>
+      </inertial>
+      <collision name='shoulder_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.05 0.4 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='shoulder_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.05 0.4 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder' type='fixed'>
+      <child>shoulder_link</child>
+      <parent>world</parent>
+    </joint>
+    <link name='left_shoulder_xx_link'>
+      <pose frame=''>0 0.2 1 0 -1.0034 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1.67e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.67e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.67e-05</izz>
+        </inertia>
+      </inertial>
+      <visual name='left_shoulder_xx_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder_l' type='revolute'>
+      <child>left_shoulder_xx_link</child>
+      <parent>shoulder_link</parent>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>2.2</upper>
+          <effort>101</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.005</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='left_shoulder_psi_link'>
+      <pose frame=''>0 0.2 1 0.237075 -0.984948 -0.282233</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1.67e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000167</iyy>
+          <iyz>0</iyz>
+          <izz>1.67e-05</izz>
+        </inertia>
+      </inertial>
+      <visual name='left_shoulder_psi_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder_psi_l' type='revolute'>
+      <child>left_shoulder_psi_link</child>
+      <parent>left_shoulder_xx_link</parent>
+      <axis>
+        <xyz>0.843301 -0 -0.537441</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+          <effort>101</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.005</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_l_upper'>
+      <pose frame=''>0 0.2 1 -0.147625 -0.984948 -0.282233</pose>
+      <inertial>
+        <pose frame=''>-0.15 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00041</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_l_upper_collision'>
+        <pose frame=''>-0.15 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.3 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='arm_l_upper_visual'>
+        <pose frame=''>-0.15 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.3 0.05 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder_theta_l' type='revolute'>
+      <child>arm_l_upper</child>
+      <parent>left_shoulder_psi_link</parent>
+      <axis>
+        <xyz>0.531031 -0.153985 0.833243</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+          <effort>101</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.005</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='left_elbow_theta_link'>
+      <pose frame=''>-0.159309 0.246195 0.750027 0.088103 -0.391648 2.70237</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1.67e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.67e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.67e-05</izz>
+        </inertia>
+      </inertial>
+      <visual name='left_elbow_theta_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='elbow_xx_l' type='revolute'>
+      <child>left_elbow_theta_link</child>
+      <parent>arm_l_upper</parent>
+      <axis>
+        <xyz>-0.393184 -0.915856 0.081327</xyz>
+        <limit>
+          <lower>-1.7708</lower>
+          <upper>1.5708</upper>
+          <effort>101</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='left_elbow_psi_link'>
+      <pose frame=''>-0.159309 0.246195 0.750027 0.148744 -0.373718 2.54029</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1.67e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.67e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.67e-05</izz>
+        </inertia>
+      </inertial>
+      <visual name='left_elbow_psi_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='elbow_theta_l' type='revolute'>
+      <child>left_elbow_psi_link</child>
+      <parent>left_elbow_theta_link</parent>
+      <axis>
+        <xyz>-0.381557 0.082049 -0.920696</xyz>
+        <limit>
+          <lower>-0.7</lower>
+          <upper>2</upper>
+          <effort>101</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_l_lower'>
+      <pose frame=''>-0.159309 0.246195 0.750027 0.362644 -0.373718 2.54029</pose>
+      <inertial>
+        <pose frame=''>-0.175 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00041</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0135</iyy>
+          <iyz>0</iyz>
+          <izz>0.0135</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_l_lower_collision'>
+        <pose frame=''>-0.175 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.35 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='arm_l_lower_visual'>
+        <pose frame=''>-0.175 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.35 0.05 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='elbow_left' type='revolute'>
+      <child>arm_l_lower</child>
+      <parent>left_elbow_psi_link</parent>
+      <axis>
+        <xyz>-0.767682 0.52667 0.36508</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>1</upper>
+          <effort>101</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+  </model>
+</sdf>
