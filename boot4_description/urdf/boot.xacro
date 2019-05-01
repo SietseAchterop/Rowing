@@ -1253,8 +1253,6 @@
     </actuator>
   </transmission>
 
-  
-
 
   <transmission name="tran19">
     <type>transmission_interface/SimpleTransmission</type>

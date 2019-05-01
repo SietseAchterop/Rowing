@@ -37,10 +37,11 @@ help_string = """   Commands:
 
 
 # globals
-# All 21 joints to control (ook de handle joints?)
+# All 17 joints to control (ook de handle joints?)
 arm_joints = [
-    'knee', 'hip2', 'back_lh', 'shoulder_l', 'shoulder_psi_l', 'shoulder_theta_l', 'elbow_xx_l', 'elbow_theta_l', 'elbow_left', 'handle_left_j1', 'handle_left_j2',
-    'handle_left_j3', 'shoulder_r', 'shoulder_psi_r', 'shoulder_theta_r', 'elbow_xx_r', 'elbow_theta_r', 'elbow_right', 'handle_right_j1', 'handle_right_j2', 'handle_right_j3' ]
+    'knee', 'hip2', 'back_lh', 'starboard_blade', 'port_blade',
+    'shoulder_l', 'shoulder_psi_l', 'shoulder_theta_l', 'elbow_xx_l', 'elbow_theta_l', 'elbow_left',
+    'shoulder_r', 'shoulder_psi_r', 'shoulder_theta_r', 'elbow_xx_r', 'elbow_theta_r', 'elbow_right' ]
 tfstart = 0
 
 """
@@ -67,7 +68,7 @@ tfstart = 0
   
 """
 mdata    = np.zeros((100,3))   # model data
-bdata    = np.zeros((100,3))   # boat data
+bdata    = np.zeros((100,3))   # boat data (joint states)
 spdata   = np.zeros((100,3))   # sensor port data
 ssbdata  = np.zeros((100,3))   # sensor starboard data
 
@@ -93,9 +94,7 @@ def jscallback(data):
         timestamp = int(jsts.header.stamp.secs*1000 + jsts.header.stamp.nsecs/1000000)
         if bcnt ==0:
             bstarttime = timestamp
-        if ((timestamp-bstarttime) % 20) != 0:
-            # gebeurd vrijwel nooit
-            print ('timestamp error jscallback', timestamp, timestamp-bstarttime)
+        #print ('jscallback times', timestamp-bstarttime)
         # collect needed data. directly use indices for efficiency
         p_knee = jsts.position[15]
         hip2 = jsts.position[14]
@@ -126,9 +125,7 @@ def spcb(data):
         timestamp = int(spd.header.stamp.secs*1000 + spd.header.stamp.nsecs/1000000)
         if spcnt ==0:
             spstarttime = timestamp
-        if ((timestamp-spstarttime) % 20) != 0:
-            # gebeurd vrijwel nooit
-            print ('timestamp error spcb', timestamp, timestamp-spstarttime)
+        #print ('spcb times', timestamp-spstarttime)
         spdata[spcnt] = [timestamp-spstarttime, spd.wrench.force.x, spd.wrench.force.y, spd.wrench.force.z, spd.wrench.torque.x, spd.wrench.torque.y, spd.wrench.torque.z]
         spcnt +=1
 
@@ -140,9 +137,7 @@ def ssbcb(data):
         timestamp = int(ssbd.header.stamp.secs*1000 + ssbd.header.stamp.nsecs/1000000)
         if ssbcnt ==0:
             ssbstarttime = timestamp
-        if ((timestamp-ssbstarttime) % 20) != 0:
-            # gebeurd vrijwel nooit
-            print ('timestamp error ssbcb', timestamp, timestamp-ssbstarttime)
+        #print ('ssbcb times', timestamp-ssbstarttime)
         ssbdata[ssbcnt] = [timestamp-ssbstarttime, ssbd.wrench.force.x, ssbd.wrench.force.y, ssbd.wrench.force.z, ssbd.wrench.torque.x, ssbd.wrench.torque.y, ssbd.wrench.torque.z]
         ssbcnt +=1
 
@@ -151,21 +146,25 @@ def ssbcb(data):
 def create_movegoals():
     global repeat
     # Initially go to proper position (use arm_joints order)
-    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
+    move_goals  = [[0.0, 0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
     time_goals  = [ 1.0]
 
-    # describe a stroke cycle
-    """
-    einde haal:  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]
-    begin haal:
-    inzet:
-    uitzet:      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    """
     # default values
-    cycle_goals =  [ [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0],
-                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.01, 0.08, -0.05, -0.25, 0.05, 0.24, 0.11, -0.07, 0.01, -0.04, -0.23, 0.05, 0.14, 0.21, 0.0]]
-    cycle_times = [ 1.0, 1.0,2.0 ]
+    cycle_goals =  [ [0.0, 0.0, 0.0, 0.0, 0.0,
+                      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                      0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                      [-2.46, 0.34, 0.30, 0.0, 0.0,
+                      1.85, 0.29, 0.00, -1.77, -0.16, 0.0,
+                       1.84, 0.30, 0.0, -1.67, -0.16, -0.07],
+                      [0.0, 0.0, 0.0, 0.0, 0.0,
+                      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                      0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                      [0.0, 0.0, 0.0, 0.0, 0.0,
+                      0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                      0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
+    cycle_times = [ 1.0, 1.0, 1.0, 1.0 ]
 
     # calculate complete session:
     for i in range(repeat):
