@@ -4,49 +4,7 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="myboat" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!-- ros_control plugin -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>/boot</robotNamespace>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-    </plugin>
-    <plugin filename="libgazebo_ros_ft_sensor.so" name="sb_rl_sensor">
-      <updateRate>50.0</updateRate>
-      <topicName>sb_rl_sensor</topicName>
-      <jointName>starboard_rowlock</jointName>
-    </plugin>
-    <plugin filename="libgazebo_ros_ft_sensor.so" name="p_rl_sensor">
-      <updateRate>50.0</updateRate>
-      <topicName>p_rl_sensor</topicName>
-      <jointName>port_rowlock</jointName>
-    </plugin>
-    <plugin filename="libgazebo_ros_ft_sensor.so" name="sb_oar_sensor">
-      <updateRate>50.0</updateRate>
-      <topicName>sb_oar_sensor</topicName>
-      <jointName>starboard_oar</jointName>
-    </plugin>
-    <plugin filename="libgazebo_ros_ft_sensor.so" name="p_oar_sensor">
-      <updateRate>50.0</updateRate>
-      <topicName>p_oar_sensor</topicName>
-      <jointName>port_oar</jointName>
-      <noise>
-        <type>gaussian</type>
-        <mean>0.0</mean>
-        <stddev>0.003</stddev>
-        <!-- change this to simulate noise -->
-      </noise>
-    </plugin>
-    <plugin filename="libgazebo_ros_ft_sensor.so" name="sbb_sensor">
-      <updateRate>50.0</updateRate>
-      <topicName>sbb_sensor</topicName>
-      <jointName>starboard_blade</jointName>
-    </plugin>
-    <plugin filename="libgazebo_ros_ft_sensor.so" name="pb_sensor">
-      <updateRate>50.0</updateRate>
-      <topicName>pb_sensor</topicName>
-      <jointName>port_blade</jointName>
-    </plugin>
-  </gazebo>
+
   <gazebo reference="starboard_rowlock">
     <provideFeedback>true</provideFeedback>
   </gazebo>
@@ -293,7 +251,7 @@
     <parent link="back_low"/>
     <child link="back_high"/>
     <origin rpy="0  0.011 0.0" xyz="0.25 0.0   0.0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <axis xyz="0 1 0"/>
     <limit effort="101.0" lower="0.0" upper="0.5" velocity="1.0"/>
   </joint>
@@ -301,7 +259,7 @@
     <parent link="back_high"/>
     <child link="shoulder_link"/>
     <origin rpy="0  0.0 0.0" xyz="0.3 0.0   0.0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="0.0" upper="0.5" velocity="1.0"/>
   </joint>
   <joint name="head_joint" type="fixed">
@@ -366,7 +324,7 @@
     <parent link="arm_l_lower"/>
     <child link="left_elbow_psi_link"/>
     <origin rpy="0 0 -1.9207" xyz="-0.4 0.0 0.0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
@@ -388,7 +346,7 @@
     <child link="left_elbow_theta_link"/>
     <origin rpy="0.0 0.0003  0.0" xyz="-0.0 0.0  0.0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-0.7" upper="2.0" velocity="1.0"/>
   </joint>
   <link name="left_elbow_theta_link">
@@ -409,7 +367,7 @@
     <child link="arm_l_upper"/>
     <origin rpy="0.9796 0.0  0.0" xyz="-0.0 0.0  0.0"/>
     <axis xyz="1 0 0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-0.7" upper="2.0" velocity="1.0"/>
   </joint>
   <!-- 3D joint left shoulder -->
@@ -561,7 +519,7 @@
     <parent link="arm_r_lower"/>
     <child link="right_elbow_psi_link"/>
     <origin rpy="0 0 1.2894" xyz="-0.4 0.0 0.0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <axis xyz="0 0 1"/>
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
@@ -583,7 +541,7 @@
     <child link="right_elbow_theta_link"/>
     <origin rpy="0.0 0.0288  0.0" xyz="0.0 0.0  0.0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-2.0" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="right_elbow_theta_link">
@@ -604,7 +562,7 @@
     <child link="arm_r_upper"/>
     <origin rpy="0.2775 0.0  0.0" xyz="0.0 0.0  0.0"/>
     <axis xyz="-1 0 0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-1.0" upper="2.0" velocity="1.0"/>
   </joint>
   <!-- 3D joint right shoulder -->
@@ -613,7 +571,7 @@
     <child link="right_shoulder_psi_link"/>
     <origin rpy="3.14159265359 0.7384 0" xyz="0.35 0.0 0.0"/>
     <axis xyz="0 -1 0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
   <link name="right_shoulder_psi_link">

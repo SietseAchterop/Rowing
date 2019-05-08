@@ -157,14 +157,17 @@ def create_movegoals():
                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
                       [-2.46, 0.34, 0.30, 0.0, 0.0,
                       1.85, 0.29, 0.00, -1.77, -0.16, 0.0,
-                       1.84, 0.30, 0.0, -1.67, -0.16, -0.07],
+                       1.84, 0.30, 0.0, -1.67, -0.16, -0.07] ]
+    cycle_times = [ 1.0, 1.0 ]
+
+    '''
                       [0.0, 0.0, 0.0, 0.0, 0.0,
                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
                       [0.0, 0.0, 0.0, 0.0, 0.0,
                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
-    cycle_times = [ 1.0, 1.0, 1.0, 1.0 ]
+    '''
 
     # calculate complete session:
     for i in range(repeat):
@@ -331,7 +334,7 @@ if __name__ == '__main__':
     print("Make sure the model is started with 'roslaunch boot_gazebo control_world.launch' ")
     world_pause(False)
     #    we could start gazebo from here...
-    load_controllers()
+    #load_controllers()
 
     # Connect to the trajectory action server
     #rospy.loginfo('Waiting for boot trajectory controller...')

@@ -4,11 +4,11 @@
 
   <link name="world"/>
 
-  <joint name="shoulder" type="fixed">
+  <joint name="shoulder" type="revolute">
     <parent link="world"/>
     <child link="shoulder_link"/>
     <origin rpy="0  -1.57079632679 0.0" xyz="0.0 0.0   1.0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="0.0" upper="0.5" velocity="1.0"/>
   </joint>
 
@@ -56,7 +56,7 @@
     <child link="left_elbow_theta_link"/>
     <origin rpy=" 3.14159265359 -1.75859632679  0.0" xyz="-0.3 0.0  0.0"/>
     <axis xyz="0 1 0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-1.77079632679" upper="1.57079632679" velocity="1.0"/>
   </joint>
   <link name="left_elbow_theta_link">
@@ -72,12 +72,12 @@
       </geometry>
     </visual>
   </link>
-  <joint name="elbow_theta_l" type="fixed">
+  <joint name="elbow_theta_l" type="revolute">
     <parent link="left_elbow_theta_link"/>
     <child link="left_elbow_psi_link"/>
     <origin rpy="0 0.0  -0.1514" xyz="-0.0 0.0  0.0"/>
     <axis xyz="0 0 -1"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <limit effort="101.0" lower="-0.7" upper="2.0" velocity="1.0"/>
   </joint>
   <link name="left_elbow_psi_link">
@@ -97,7 +97,7 @@
     <parent link="left_elbow_psi_link"/>
     <child link="arm_l_lower"/>
     <origin rpy="0.2139 0 0" xyz="-0.0 0.0 0.0"/>
-    <dynamics damping="0.5"/>
+    <dynamics damping="0.005"/>
     <axis xyz="1 0 0"/>
     <limit effort="101.0" lower="-1.0" upper="1.0" velocity="1.0"/>
   </joint>
