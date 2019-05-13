@@ -15,7 +15,7 @@
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="headless" value="$(arg headless)"/>
-    <arg name="physics" value="dart"/>
+    <arg name="physics" value="ode"/>
   </include>
 
   <!-- Load the URDF into the ROS Parameter Server -->
